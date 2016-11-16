@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">iScore</string>
+    <string name="title_activity_play_match">PlayMatchActivity</string>
+</resources>
