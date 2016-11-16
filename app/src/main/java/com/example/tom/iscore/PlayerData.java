@@ -76,9 +76,6 @@ public class PlayerData {
     private int totalReturnerServeWinners = 0;
 
 
-
-
-
     /*
     These setters are used so that each time the scorePoint function is called the instance of
     PlayerData know the score of the other player
@@ -308,6 +305,7 @@ public class PlayerData {
             this.breakPointsAgainst += 1;
         }
 
+        //If player has lost the game
         if (hasLostGame())
         {
             loseGame();
@@ -399,6 +397,11 @@ public class PlayerData {
     public int getServeType() { return this.serveType; }
 
 
+    /*
+    Statistical methods that will update the relevant statistical attributes,
+    and then call any scoring methods.
+     */
+
     public void scoreAce()
     {
         this.totalAces += 1;
@@ -489,8 +492,12 @@ public class PlayerData {
         losePoint();
     }
 
+
     public void switchServer()
     {
+        /*
+        Method that changes the server.
+         */
         this.isServing = !isServing;
     }
 }

@@ -18,6 +18,9 @@ public class HomeScreenActivity extends AppCompatActivity {
         startMatchBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
+                Open the PlayMatchActivity
+                 */
                 startActivity(new Intent(HomeScreenActivity.this, PlayMatchActivity.class));
             }
         });
