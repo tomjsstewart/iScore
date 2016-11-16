@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Ace"
+        android:title="Ace"/>
+
+    <item
+        android:id="@+id/Winner"
+        android:title="Winner"/>
+
+    <item
+        android:id="@+id/Fault"
+        android:title="Fault"/>
+
+    <item
+        android:id="@+id/Double_Fault"
+        android:title="Double Fault"/>
+
+    <item
+        android:id="@+id/Unforced_Error"
+        android:title="Unforced Error"/>
+
+    <item
+        android:id="@+id/Forced_Error"
+        android:title="Forced Error"/>
+
+</menu>
