@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Forehand"
+        android:title="Forehand"/>
+
+    <item
+        android:id="@+id/Backhand"
+        android:title="Backhand"/>
+
+    <item
+        android:id="@+id/Volley"
+        android:title="Volley"/>
+
+    <item
+        android:id="@+id/Smash"
+        android:title="Smash"/>
+
+    <item
+        android:id="@+id/Dropshot"
+        android:title="Dropshot"/>
+
+    <item
+        android:id="@+id/Lob"
+        android:title="Lob"/>
+
+    <item
+        android:id="@+id/Returner_Serve"
+        android:title="Returner Serve"/>
+
+</menu>

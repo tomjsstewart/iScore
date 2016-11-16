@@ -22,6 +22,59 @@ public class PlayerData {
     private int opponentsPointsThisGame = 0;
     private int opponentsGamesThisSet = 0;
     private int opponentsSetsThisMatch = 0;
+    private int opponentServetype = 0;
+
+    private boolean isServing = false;
+    private int serveType = 0;
+
+    //Statistical attributes
+    private int totalPointsWon = 0;
+    private int totalPointsPlayed = 0;
+    private int totalGamesWon = 0;
+    private int totalGamesPlayed = 0;
+    private int totalSetsPlayed = 0;
+
+    private int firstServePointsPlayed = 0;
+    private int firstServePointsWon = 0;
+    private int secondServePointsPlayed = 0;
+    private int secondServePointsWon = 0;
+    private int receivingFirstServePointsPlayed = 0;
+    private int receivingFirstServePointsWon = 0;
+    private int receivingSecondServePointsPlayed = 0;
+    private int receivingSecondServePointsWon = 0;
+
+    private int breakPointChances = 0;
+    private int breakPointsConverted = 0;
+    private int breakPointsAgainst = 0;
+    private int breakPointsSaved = 0;
+
+    private int currentTieBreakpoints = 0;
+    private int tieBreaksPlayed = 0;
+    private int tieBreaksWon = 0;
+    private int tieBreakPointsPlayed = 0;
+    private int tieBreakPointsWon = 0;
+
+    private int deucePointsPlayed = 0;
+    private int deucePointsWon = 0;
+    private int advantagePointsPlayed = 0;
+    private int advantagePointsWon = 0;
+
+    private int totalAces = 0;
+    private int totalFaults = 0;
+    private int totalDoubleFaults = 0;
+    private int totalUnforcedErrors = 0;
+    private int totalForcedErrors = 0;
+    private int totalWinners = 0;
+    private int totalForehandWinners = 0;
+    private int totalBackhandWinners = 0;
+    private int totalVolleyWinners = 0;
+    private int totalSmashWinners = 0;
+    private int totalDropShotWinners = 0;
+    private int totalDriveVolleyWinners = 0;
+    private int totalHalfVolleyWinners = 0;
+    private int totalLobWinners = 0;
+    private int totalReturnerServeWinners = 0;
+
 
 
 
@@ -45,6 +98,10 @@ public class PlayerData {
         this.opponentsSetsThisMatch = _opponentsSetsThisMatch;
     }
 
+    public void setOpponentServetype(int _opponentServeType)
+    {
+        this.opponentServetype = _opponentServeType;
+    }
 
 
     public boolean hasWonGame()
@@ -88,9 +145,7 @@ public class PlayerData {
     {
         /*
         Function to check if player has lost a game.
-        This is to be used to reset the points of both players
-        at the end of a game.
-         */
+        */
        if ( (this.opponentsPointsThisGame == 4) || (this.opponentsPointsThisGame == 7))
        {
            return true;
@@ -103,6 +158,9 @@ public class PlayerData {
 
     public boolean hasLostSet()
     {
+        /*
+        Function to check if player has lost a set.
+        */
         if ( (this.opponentsGamesThisSet >= 6) && ((this.gamesThisSet+2) <= this.opponentsGamesThisSet) )
         {
             return true;
@@ -136,12 +194,46 @@ public class PlayerData {
         appropriate function will be called from within scorePoint.
          */
 
+
         //Score the point
         this.pointsThisGame += 1;
+        this.totalPointsWon += 1;
+        this.totalPointsPlayed += 1;
+
+        if (isServing) //Player is serving
+        {
+            if (serveType == 1) //First serve
+            {
+                this.firstServePointsWon += 1;
+                this.firstServePointsPlayed += 1;
+            }
+            else //Second serve
+            {
+                this.secondServePointsWon += 1;
+                this.secondServePointsPlayed += 1;
+            }
+        }
+        else //Opponent is serving
+        {
+            if (opponentServetype == 1) //Opponent's first serve
+            {
+                this.receivingFirstServePointsWon += 1;
+                this.receivingFirstServePointsPlayed += 1;
+            }
+            else //Opponent's second serve
+            {
+                this.receivingSecondServePointsWon += 1;
+                this.receivingFirstServePointsPlayed += 1;
+            }
+        }
 
         //Check if the player has won the game
         if (hasWonGame())
         {
+            if (!isServing)
+            {
+                this.breakPointsConverted += 1;
+            }
             //If they have won the game, score a game.
             scoreGame();
             return;
@@ -152,6 +244,7 @@ public class PlayerData {
         {
             //If it is set the score to deuce.
             this.pointsThisGame = 5;
+            this.deucePointsPlayed += 1;
             return;
         }
 
@@ -161,19 +254,25 @@ public class PlayerData {
             //if opponent has advantage.
             if (this.opponentsPointsThisGame == 6)
             {
-                /*
-                Score stays at 40
-                Opponent will also be set back to 40
-                So that score is deuce
-                */
+                //Score stays at 40
+                //Opponent will also be set back to 40
+                //So that score is deuce
                 this.pointsThisGame = 5;
+                if (isServing)
+                {
+                    this.breakPointsSaved += 1;
+                }
                 return;
             }
-            //Opponent has deuce.
+            //Score is deuce
             else
             {
                 //Score moves to advantage
                 this.pointsThisGame = 6;
+                if (!isServing)
+                {
+                    breakPointChances += 1;
+                }
             }
         }
     }
@@ -187,6 +286,9 @@ public class PlayerData {
         to deuce.
          */
 
+        this.totalPointsPlayed += 1;
+
+        //if the score is deuce
         if(isDeuce() || this.opponentsPointsThisGame == 5)
         {
             this.pointsThisGame = 5;
@@ -200,10 +302,17 @@ public class PlayerData {
             this.pointsThisGame = 5;
         }
 
+        //if opponent has advantage or 40 (and score isn't deuce)
+        if ((opponentsPointsThisGame == 6 && isServing) || (opponentsPointsThisGame == 3 && !isDeuce()))
+        {
+            this.breakPointsAgainst += 1;
+        }
+
         if (hasLostGame())
         {
             loseGame();
             return;
+
         }
     }
 
@@ -212,11 +321,14 @@ public class PlayerData {
     {
         /*
         Function to score a game.
-        If the player has won the set then the ppropriate funtion will be called.
+        If the player has won the set then the appropriate function will be called.
          */
 
         //Score the game
         this.gamesThisSet += 1;
+
+        this.totalGamesWon += 1;
+        this.totalGamesPlayed += 1;
 
         //If won the set score a set
         if (hasWonSet() == true)
@@ -231,6 +343,9 @@ public class PlayerData {
         /*
         Function to handle player losing a game.
          */
+
+        this.totalGamesPlayed += 1;
+
         if (hasLostSet() == true)
         {
             loseSet();
@@ -245,6 +360,9 @@ public class PlayerData {
         Function to handle player winning a set.
          */
         this.setsThisMatch += 1;
+
+        this.totalSetsPlayed += 1;
+
         if (hasWonMatch() == true)
         {
             //Do something here to end the match
@@ -255,6 +373,7 @@ public class PlayerData {
 
     public void loseSet()
     {
+        this.totalSetsPlayed += 1;
         return;
     }
 
@@ -277,5 +396,101 @@ public class PlayerData {
     }
     public int getGamesThisSet() { return this.gamesThisSet; }
     public int getSetsThisMatch() { return this.setsThisMatch; }
+    public int getServeType() { return this.serveType; }
 
+
+    public void scoreAce()
+    {
+        this.totalAces += 1;
+        this.totalWinners += 1;
+        scorePoint();
+    }
+
+    public void scoreForehandWinner()
+    {
+        this.totalForehandWinners += 1;
+        this.totalWinners += 1;
+        scorePoint();
+    }
+
+    public void scoreBackhandWinner()
+    {
+        this.totalBackhandWinners += 1;
+        this.totalWinners += 1;
+        scorePoint();
+    }
+
+    public void scoreVolleyWinner()
+    {
+        this.totalVolleyWinners += 1;
+        this.totalWinners += 1;
+        scorePoint();
+    }
+
+    public void scoreDriveVolleyWinner()
+    {
+        this.totalDriveVolleyWinners += 1;
+        scoreVolleyWinner();
+    }
+
+    public void scoreHalfVolleyWinner()
+    {
+        this.totalHalfVolleyWinners += 1;
+        scoreVolleyWinner();
+    }
+
+    public void scoreSmashWinner()
+    {
+        this.totalSmashWinners += 1;
+        scorePoint();
+    }
+
+    public void scoreDropShotWinner()
+    {
+        this.totalDropShotWinners += 1;
+        this.totalWinners += 1;
+        scorePoint();
+    }
+
+    public void scoreLobWinner()
+    {
+        this.totalLobWinners += 1;
+        this.totalWinners += 1;
+        scorePoint();
+    }
+
+    public void scoreReturnerServeWinner()
+    {
+        this.totalReturnerServeWinners += 1;
+        this.totalWinners += 1;
+        scorePoint();
+    }
+
+    public void recordFault()
+    {
+        this.totalFaults += 1;
+    }
+
+    public void recordDoubleFault()
+    {
+        this.totalDoubleFaults += 1;
+        losePoint();
+    }
+
+    public void recordUnforcedError()
+    {
+        this.totalUnforcedErrors += 1;
+        scorePoint();
+    }
+
+    public void recordForcedError()
+    {
+        this.totalForcedErrors += 1;
+        losePoint();
+    }
+
+    public void switchServer()
+    {
+        this.isServing = !isServing;
+    }
 }
