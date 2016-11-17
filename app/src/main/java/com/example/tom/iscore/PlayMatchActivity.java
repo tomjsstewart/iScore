@@ -32,6 +32,47 @@ public class PlayMatchActivity extends AppCompatActivity {
 
     private int playerClicked = 0;
 
+    public void checkWinningGameSetOrMatch()
+    {
+        /*
+         If either player has won a game then reset all points to 0;
+         */
+        if (
+                player1Data.getPointsThisGame() == 4 ||
+                        player2Data.getPointsThisGame() == 4 ||
+                        player1Data.getPointsThisGame() == 7 ||
+                        player2Data.getPointsThisGame() == 7)
+        {
+            player1Data.resetPoints();
+            player2Data.resetPoints();
+        }
+
+        /*
+         If either player has won a game reset games
+         */
+        if (
+                ((player1Data.getGamesThisSet() >=6) && ((player2Data.getGamesThisSet()+2) <= player1Data.getGamesThisSet())) ||
+                        ((player2Data.getGamesThisSet() >=6) && ((player1Data.getGamesThisSet()+2) <= player2Data.getGamesThisSet()))
+
+                )
+        {
+            player1Data.resetGames();
+            player2Data.resetGames();
+        }
+
+        /*
+        If either player has won the match disable buttons.
+         */
+        if (player1Data.getSetsThisMatch() == 3 || player2Data.getSetsThisMatch() == 3)
+        {
+            player1NameTextView.setEnabled(false);
+            player2NameTextView.setEnabled(false);
+        }
+
+        updateScreen();
+    }
+
+
     public void updateScreen()
     {
         player1PointsTextView.setText(pointsValues[player1Data.getPointsThisGame()]);
@@ -284,39 +325,7 @@ public class PlayMatchActivity extends AppCompatActivity {
 
                 player2Data.losePoint();
 
-                /*
-                If either player has won a game then reset all points to 0;
-                 */
-                if (
-                        player1Data.getPointsThisGame() == 4 ||
-                        player2Data.getPointsThisGame() == 4 ||
-                        player1Data.getPointsThisGame() == 7 ||
-                        player2Data.getPointsThisGame() == 7)
-                {
-                    player1Data.resetPoints();
-                    player2Data.resetPoints();
-                }
-
-                /*
-                If either player has won a game reset games
-                 */
-                if (
-                        ((player1Data.getGamesThisSet() >=6) && ((player2Data.getGamesThisSet()+2) <= player1Data.getGamesThisSet())) ||
-                                ((player2Data.getGamesThisSet() >=6) && ((player1Data.getGamesThisSet()+2) <= player2Data.getGamesThisSet()))
-
-                        )
-                {
-                    player1Data.resetGames();
-                    player2Data.resetGames();
-                }
-
-                if (player1Data.getSetsThisMatch() == 3 || player2Data.getSetsThisMatch() == 3)
-                {
-                    player1NameTextView.setEnabled(false);
-                    player2NameTextView.setEnabled(false);
-                }
-
-                updateScreen();
+                checkWinningGameSetOrMatch();
             }
         });
 
@@ -353,41 +362,8 @@ public class PlayMatchActivity extends AppCompatActivity {
 
 
                 player1Data.losePoint();
+                checkWinningGameSetOrMatch();
 
-
-                /*
-                If either player has won a game then reset all points to 0;
-                 */
-                if (
-                        player1Data.getPointsThisGame() == 4 ||
-                                player2Data.getPointsThisGame() == 4 ||
-                                player1Data.getPointsThisGame() == 7 ||
-                                player2Data.getPointsThisGame() == 7)
-                {
-                    player1Data.resetPoints();
-                    player2Data.resetPoints();
-                }
-
-                /*
-                If either player has won a game reset games
-                 */
-                if (
-                        ((player2Data.getGamesThisSet() >=6) && ((player1Data.getGamesThisSet()+2) <= player2Data.getGamesThisSet())) ||
-                                ((player1Data.getGamesThisSet() >=6) && ((player2Data.getGamesThisSet()+2) <= player1Data.getGamesThisSet()))
-
-                        )
-                {
-                    player1Data.resetGames();
-                    player2Data.resetGames();
-                }
-
-                if (player1Data.getSetsThisMatch() == 3 || player2Data.getSetsThisMatch() == 3)
-                {
-                    player1NameTextView.setEnabled(false);
-                    player2NameTextView.setEnabled(false);
-                }
-
-                updateScreen();
             }
         });
 
