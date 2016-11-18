@@ -1,5 +1,6 @@
 package com.example.tom.iscore;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
@@ -410,10 +411,14 @@ public class PlayMatchActivity extends AppCompatActivity {
         popup.show();
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_match);
+        //Force Screen to open Landscape mode
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
 
         player1NameTextView = (TextView) findViewById(R.id.player1NameTextView);
@@ -482,5 +487,7 @@ public class PlayMatchActivity extends AppCompatActivity {
 
 
     }
+
+
 
 }
