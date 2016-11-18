@@ -85,6 +85,40 @@ public class PlayMatchActivity extends AppCompatActivity {
 
     }
 
+    public void player1LosesPoint()
+    {
+        /*
+        Function to call required code when player 1 loses a point
+         */
+        player1Data.setOpponentsPointsThisGame(
+                player2Data.getPointsThisGame());
+        player1Data.setOpponentsGamesThisSet(
+                player2Data.getGamesThisSet());
+        player1Data.setOpponentsSetsThisMatch(
+                player2Data.getSetsThisMatch());
+
+        player1Data.losePoint();
+
+        checkWinningGameSetOrMatch();
+    }
+
+    public void player2LosesPoint()
+    {
+         /*
+        Function to call required code when player 1 loses a point
+         */
+        player2Data.setOpponentsPointsThisGame(
+                player1Data.getPointsThisGame());
+        player2Data.setOpponentsGamesThisSet(
+                player1Data.getGamesThisSet());
+        player2Data.setOpponentsSetsThisMatch(
+                player1Data.getSetsThisMatch());
+
+        player2Data.losePoint();
+
+        checkWinningGameSetOrMatch();
+    }
+
     public void endMatch()
     {
         player1NameTextView.setEnabled(false);
@@ -116,39 +150,73 @@ public class PlayMatchActivity extends AppCompatActivity {
                 {
                     case R.id.Ace: //Ace
                         if (playerClicked == 1)
-                        {player1Data.scoreAce();}
+                        {
+                            player1Data.scoreAce();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.scoreAce();}
+                        {
+                            player2Data.scoreAce();
+                            player1LosesPoint();
+                        }
                         return true;
+
                     case R.id.Winner:
                         //Call the winner popup menu
                         showWinnerPopup(v);
-                        return true;
+
                     case R.id.Fault: //Fault
                         if (playerClicked == 1)
-                        {player1Data.recordFault();}
+                        {
+                            player1Data.recordFault();
+                        }
                         else
-                        {player2Data.recordFault();}
+                        {
+                            player2Data.recordFault();
+                        }
                         return true;
+
                     case R.id.Double_Fault: //Double fault
                         if (playerClicked == 1)
-                        {player1Data.recordDoubleFault();}
+                        {
+                            player1Data.recordDoubleFault();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.recordDoubleFault();}
+                        {
+                            player2Data.recordDoubleFault();
+                            player1LosesPoint();
+                        }
                         return true;
+
                     case R.id.Unforced_Error: //Unforced error
                         if (playerClicked == 1)
-                        {player1Data.recordUnforcedError();}
+                        {
+                            player1Data.recordUnforcedError();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.recordUnforcedError();}
+                        {
+                            player2Data.recordUnforcedError();
+                            player1LosesPoint();
+                        }
                         return true;
+
                     case R.id.Forced_Error: //Forced error
                         if (playerClicked == 1)
-                        {player1Data.recordForcedError();}
+                        {
+                            player1Data.recordForcedError();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.recordForcedError();}
+                        {
+                            player2Data.recordForcedError();
+                            player1LosesPoint();
+                        }
                         return true;
+
                     default:
+                        updateScreen();
                         return false;
                 }
             }
@@ -179,45 +247,89 @@ public class PlayMatchActivity extends AppCompatActivity {
                 {
                     case R.id.Forehand: //Forehand winner
                         if (playerClicked == 1)
-                        {player1Data.scoreForehandWinner();}
+                        {
+                            player1Data.scoreForehandWinner();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.scoreForehandWinner();}
+                        {
+                            player2Data.scoreForehandWinner();
+                            player1LosesPoint();
+                        }
                         return true;
+
                     case R.id.Backhand: //Backhand winner
                         if (playerClicked == 1)
-                        {player1Data.scoreBackhandWinner();}
+                        {
+                            player1Data.scoreBackhandWinner();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.scoreBackhandWinner();}
+                        {
+                            player2Data.scoreBackhandWinner();
+                            player1LosesPoint();
+                        }
                         return true;
+
                     case R.id.Volley: //Volley
                         //Call volley popup menu.
                         showVolleyPopup(v);
                         return true;
+
                     case R.id.Smash: //Smash winner
                         if (playerClicked == 1)
-                        {player1Data.scoreSmashWinner();}
+                        {
+                            player1Data.scoreSmashWinner();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.scoreSmashWinner();}
+                        {
+                            player2Data.scoreSmashWinner();
+                            player1LosesPoint();
+                        }
                         return true;
+
                     case R.id.Dropshot: //Dropshot winner
                         if (playerClicked == 1)
-                        {player1Data.scoreDropShotWinner();}
+                        {
+                            player1Data.scoreDropShotWinner();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.scoreDropShotWinner();}
+                        {
+                            player2Data.scoreDropShotWinner();
+                            player1LosesPoint();
+                        }
                         return true;
+
                     case R.id.Lob: //Lob winner
                         if (playerClicked == 1)
-                        {player1Data.scoreLobWinner();}
+                        {
+                            player1Data.scoreLobWinner();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.scoreLobWinner();}
+                        {
+                            player2Data.scoreLobWinner();
+                            player1LosesPoint();
+                        }
                         return true;
+
                     case R.id.Returner_Serve: //returner serve winner
                         if (playerClicked == 1)
-                        {player1Data.scoreReturnerServeWinner();}
+                        {
+                            player1Data.scoreReturnerServeWinner();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.scoreReturnerServeWinner();}
+                        {
+                            player2Data.scoreReturnerServeWinner();
+                            player1LosesPoint();
+                        }
                         return true;
+
                     default:
+                        updateScreen();
                         return false;
                 }
             }
@@ -249,25 +361,45 @@ public class PlayMatchActivity extends AppCompatActivity {
                 {
                     case R.id.Volley2: //Volley winner
                         if (playerClicked == 1)
-                        {player1Data.scoreVolleyWinner();}
+                        {
+                            player1Data.scoreVolleyWinner();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.scoreVolleyWinner();}
+                        {
+                            player2Data.scoreVolleyWinner();
+                            player1LosesPoint();
+                        }
                         return true;
 
                     case R.id.Drive_Volley: //Drive volley winner
                         if (playerClicked == 1)
-                        {player1Data.scoreDriveVolleyWinner();}
+                        {
+                            player1Data.scoreDriveVolleyWinner();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.scoreDriveVolleyWinner();}
+                        {
+                            player2Data.scoreDriveVolleyWinner();
+                            player1LosesPoint();
+                        }
                         return true;
 
                     case R.id.Half_Volley: //Half volley winner
                         if (playerClicked == 1)
-                        {player1Data.scoreHalfVolleyWinner();}
+                        {
+                            player1Data.scoreHalfVolleyWinner();
+                            player2LosesPoint();
+                        }
                         else
-                        {player2Data.scoreHalfVolleyWinner();}
+                        {
+                            player2Data.scoreHalfVolleyWinner();
+                            player1LosesPoint();
+                        }
                         return true;
+
                     default:
+                        updateScreen();
                         return false;
                 }
             }
@@ -316,16 +448,6 @@ public class PlayMatchActivity extends AppCompatActivity {
                 //player1Data.scorePoint();
                 showPointPopup(player1NameTextView);
 
-                player2Data.setOpponentsPointsThisGame(
-                        player1Data.getPointsThisGame());
-                player2Data.setOpponentsGamesThisSet(
-                        player1Data.getGamesThisSet());
-                player2Data.setOpponentsSetsThisMatch(
-                        player1Data.getSetsThisMatch());
-
-                player2Data.losePoint();
-
-                checkWinningGameSetOrMatch();
             }
         });
 
@@ -353,16 +475,6 @@ public class PlayMatchActivity extends AppCompatActivity {
                 //player2Data.scorePoint();
                 showPointPopup(player2NameTextView);
 
-                player1Data.setOpponentsPointsThisGame(
-                        player2Data.getPointsThisGame());
-                player1Data.setOpponentsGamesThisSet(
-                        player2Data.getGamesThisSet());
-                player1Data.setOpponentsSetsThisMatch(
-                        player2Data.getSetsThisMatch());
-
-
-                player1Data.losePoint();
-                checkWinningGameSetOrMatch();
 
             }
         });
