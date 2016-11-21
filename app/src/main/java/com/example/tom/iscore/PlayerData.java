@@ -500,4 +500,165 @@ public class PlayerData {
          */
         this.isServing = !isServing;
     }
+
+    public int getTotalReturnerServeWinners() {
+        return totalReturnerServeWinners;
+    }
+
+    public int getTotalLobWinners() {
+        return totalLobWinners;
+    }
+
+    public int getTotalHalfVolleyWinners() {
+        return totalHalfVolleyWinners;
+    }
+
+    public int getTotalDriveVolleyWinners() {
+        return totalDriveVolleyWinners;
+    }
+
+    public int getTotalDropShotWinners() {
+        return totalDropShotWinners;
+    }
+
+    public int getTotalSmashWinners() {
+        return totalSmashWinners;
+    }
+
+    public int getTotalVolleyWinners() {
+        return totalVolleyWinners;
+    }
+
+    public int getTotalBackhandWinners() {
+        return totalBackhandWinners;
+    }
+
+    public int getTotalForehandWinners() {
+        return totalForehandWinners;
+    }
+
+    public int getTotalWinners() {
+        return totalWinners;
+    }
+
+    public int getTotalForcedErrors() {
+        return totalForcedErrors;
+    }
+
+    public int getTotalUnforcedErrors() {
+        return totalUnforcedErrors;
+    }
+
+    public int getTotalDoubleFaults() {
+        return totalDoubleFaults;
+    }
+
+    public int getTotalFaults() {
+        return totalFaults;
+    }
+
+    public int getTotalAces() {
+        return totalAces;
+    }
+
+    public int getAdvantagePointsWon() {
+        return advantagePointsWon;
+    }
+
+    public int getAdvantagePointsPlayed() {
+        return advantagePointsPlayed;
+    }
+
+    public int getDeucePointsWon() {
+        return deucePointsWon;
+    }
+
+    public int getDeucePointsPlayed() {
+        return deucePointsPlayed;
+    }
+
+    public int getTieBreakPointsWon() {
+        return tieBreakPointsWon;
+    }
+
+    public int getTieBreakPointsPlayed() {
+        return tieBreakPointsPlayed;
+    }
+
+    public int getTieBreaksWon() {
+        return tieBreaksWon;
+    }
+
+    public int getTieBreaksPlayed() {
+        return tieBreaksPlayed;
+    }
+
+
+    public int getBreakPointsSaved() {
+        return breakPointsSaved;
+    }
+
+    public int getBreakPointsAgainst() {
+        return breakPointsAgainst;
+    }
+
+    public int getBreakPointsConverted() {
+        return breakPointsConverted;
+    }
+
+    public int getReceivingSecondServePointsWon() {
+        return receivingSecondServePointsWon;
+    }
+
+    public int getBreakPointChances() {
+        return breakPointChances;
+    }
+
+    public int getReceivingSecondServePointsPlayed() {
+        return receivingSecondServePointsPlayed;
+    }
+
+    public int getReceivingFirstServePointsWon() {
+        return receivingFirstServePointsWon;
+    }
+
+    public int getReceivingFirstServePointsPlayed() {
+        return receivingFirstServePointsPlayed;
+    }
+
+    public int getSecondServePointsWon() {
+        return secondServePointsWon;
+    }
+
+    public int getSecondServePointsPlayed() {
+        return secondServePointsPlayed;
+    }
+
+    public int getFirstServePointsWon() {
+        return firstServePointsWon;
+    }
+
+    public int getFirstServePointsPlayed() {
+        return firstServePointsPlayed;
+    }
+
+    public int getTotalSetsPlayed() {
+        return totalSetsPlayed;
+    }
+
+    public int getTotalGamesPlayed() {
+        return totalGamesPlayed;
+    }
+
+    public int getTotalGamesWon() {
+        return totalGamesWon;
+    }
+
+    public int getTotalPointsPlayed() {
+        return totalPointsPlayed;
+    }
+
+    public int getTotalPointsWon() {
+        return totalPointsWon;
+    }
 }
