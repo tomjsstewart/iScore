@@ -31,6 +31,9 @@ public class PlayMatchActivity extends AppCompatActivity {
     PlayerData player1Data = new PlayerData();
     PlayerData player2Data = new PlayerData();
 
+    //Initialise database
+    DBHandler database;
+
     private int playerClicked = 0;
 
     public void checkWinningGameSetOrMatch()
@@ -419,6 +422,10 @@ public class PlayMatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_match);
         //Force Screen to open Landscape mode
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+
+        //Open connection to database
+        database = new DBHandler(this);
 
 
         player1NameTextView = (TextView) findViewById(R.id.player1NameTextView);
