@@ -3,8 +3,13 @@ package com.example.tom.iscore;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.sql.SQLData;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Tom on 18/11/2016.
@@ -35,59 +40,57 @@ public class DBHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        String CREATE_PLAYER_TABLE = "CREATE TABLE IF NOT EXISTS PlayerTbl ("
-                + "PlayerID INT NOT NULL AUTO-INCREMENT,"
-                + "PlayerName VARCHAR(100) NOT NULL,"
-                + "playerAge TINYINT NOT NULL,"
-                + "PlayerGender VARCHAR(100),"
-                + "PlayerHand CHAR(1) NOT NULL,"
-                + "PRIMARY KEY(ID)"; //Defines primary key
+        String CREATE_PLAYER_TABLE = "CREATE TABLE PlayerTbl ("
+                + "PlayerID INTEGER primary key AUTOINCREMENT, "
+                + "PlayerName VARCHAR(100) NOT NULL, "
+                + "playerAge INTEGER NOT NULL, "
+                + "PlayerGender TEXT, "
+                + "PlayerHand TEXT NOT NULL);";
 
         String CREATE_MATCH_DATA_TABLE = "CREATE TABLE IF NOT EXISTS MatchDataTbl("
-                + "MatchID INT NOT NULL,"
-                + "PlayerID INT NOT NULL,"
-                + "TotalPointsWon INT NOT NULL, "
-                + "totalPointsPlayed INT NOT NULL, "
-                + "totalGamesWon INT NOT NULL, "
-                + "totalGamesPlayed INT NOT NULL, "
-                + "totalSetsPlayed INT NOT NULL, "
-                + "firstServePointsPlayed INT NOT NULL, "
-                + "secondServePointsPlayed INT NOT NULL, "
-                + "firstServePointsWon INT NOT NULL, "
-                + "secondServePointsWon INT NOT NULL, "
-                + "receivingFirstServePointsPlayed INT NOT NULL, "
-                + "receivingFirstServePointsWon INT NOT NULL, "
-                + "receivingSecondServePointsPlayed INT NOT NULL, "
-                + "receivingSecondServePointsWon INT NOT NULL, "
-                + "breakPointChances INT NOT NULL, "
-                + "breakPointsConverted INT NOT NULL, "
-                + "breakPointsAgainst INT NOT NULL, "
-                + "breakPointsSaved INT NOT NULL, "
-                + "tieBreaksPlayed INT NOT NULL, "
-                + "tieBreaksWon INT NOT NULL, "
-                + "tieBreakPointsWon INT NOT NULL, "
-                + "tieBreakPointsPlayed INT NOT NULL, "
-                + "deucePointsWon INT NOT NULL, "
-                + "deucePointsPlayed INT NOT NULL, "
-                + "advantagePointsWon INT NOT NULL, "
-                + "advantagePointsPlayed INT NOT NULL, "
-                + "totalAces INT NOT NULL, "
-                + "totalFaults INT NOT NULL, "
-                + "totalDoubleFaults INT NOT NULL, "
-                + "totalUnforcedError INT NOT NULL, "
-                + "totalForcedError INT NOT NULL, "
-                + "totalWinners INT NOT NULL, "
-                + "totalForehandWinners INT NOT NULL, "
-                + "totalBackhandWinners INT NOT NULL, "
-                + "totalVolleyWinners INT NOT NULL, "
-                + "totalSmashWinners INT NOT NULL, "
-                + "totalDropshotWinners INT NOT NULL, "
-                + "totalLobWinners INT NOT NULL, "
-                + "totalReturnerServeWinners INT NOT NULL, "
-                + "totalDriveVolleyWinners INT NOT NULL, "
-                + "totalHalfVolleyWinners INT NOT NULL, "
-                + "PRIMARY KEY (MatchID, PlayerID)," //Defines primary keys
-                + "FOREIGN KEY (PlayerID) REFERENCES PlayerTbl(PlayerID)"; //Defines foreign key and tells which table it came from.
+                + "MatchID INTEGER primary key NOT NULL,"
+                + "PlayerID INTEGER primary key NOT NULL,"
+                + "TotalPointsWon INTEGER NOT NULL, "
+                + "totalPointsPlayed INTEGER NOT NULL, "
+                + "totalGamesWon INTEGER NOT NULL, "
+                + "totalGamesPlayed INTEGER NOT NULL, "
+                + "totalSetsPlayed INTEGER NOT NULL, "
+                + "firstServePointsPlayed INTEGER NOT NULL, "
+                + "secondServePointsPlayed INTEGER NOT NULL, "
+                + "firstServePointsWon INTEGER NOT NULL, "
+                + "secondServePointsWon INTEGER NOT NULL, "
+                + "receivingFirstServePointsPlayed INTEGER NOT NULL, "
+                + "receivingFirstServePointsWon INTEGER NOT NULL, "
+                + "receivingSecondServePointsPlayed INTEGER NOT NULL, "
+                + "receivingSecondServePointsWon INTEGER NOT NULL, "
+                + "breakPointChances INTEGER NOT NULL, "
+                + "breakPointsConverted INTEGER NOT NULL, "
+                + "breakPointsAgainst INTEGER NOT NULL, "
+                + "breakPointsSaved INTEGER NOT NULL, "
+                + "tieBreaksPlayed INTEGER NOT NULL, "
+                + "tieBreaksWon INTEGER NOT NULL, "
+                + "tieBreakPointsWon INTEGER NOT NULL, "
+                + "tieBreakPointsPlayed INTEGER NOT NULL, "
+                + "deucePointsWon INTEGER NOT NULL, "
+                + "deucePointsPlayed INTEGER NOT NULL, "
+                + "advantagePointsWon INTEGER NOT NULL, "
+                + "advantagePointsPlayed INTEGER NOT NULL, "
+                + "totalAces INTEGER NOT NULL, "
+                + "totalFaults INTEGER NOT NULL, "
+                + "totalDoubleFaults INTEGER NOT NULL, "
+                + "totalUnforcedError INTEGER NOT NULL, "
+                + "totalForcedError INTEGER NOT NULL, "
+                + "totalWinners INTEGER NOT NULL, "
+                + "totalForehandWinners INTEGER NOT NULL, "
+                + "totalBackhandWinners INTEGER NOT NULL, "
+                + "totalVolleyWinners INTEGER NOT NULL, "
+                + "totalSmashWinners INTEGER NOT NULL, "
+                + "totalDropshotWinners INTEGER NOT NULL, "
+                + "totalLobWinners INTEGER NOT NULL, "
+                + "totalReturnerServeWinners INTEGER NOT NULL, "
+                + "totalDriveVolleyWinners INTEGER NOT NULL, "
+                + "totalHalfVolleyWinners INTEGER NOT NULL, "
+                + "FOREIGN KEY (PlayerID) REFERENCES PlayerTbl(PlayerID));"; //Defines foreign key and tells which table it came from.
 
         //Create tables
         db.execSQL(CREATE_PLAYER_TABLE);
@@ -97,6 +100,16 @@ public class DBHandler extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // Drop older tables if exists
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MATCH_DATA);
+        // Create tables again
+        onCreate(db);
+    }
+
+    public void deleteForTest()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
         // Drop older tables if exists
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MATCH_DATA);
@@ -177,6 +190,33 @@ public class DBHandler extends SQLiteOpenHelper{
 
         db.insert(TABLE_PLAYERS, null, info); //Insert row
         db.close(); //Close database
+    }
+
+    public List<PlayerData> getAllPlayers()
+    {
+        List<PlayerData> PlayersList = new ArrayList<PlayerData>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM PlayerTbl", null);
+
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                PlayerData player = new PlayerData();
+
+                player.setPlayerID(Integer.parseInt(cursor.getString(0)));
+                player.setPlayerName(cursor.getString(1));
+                player.setPlayerAge(Integer.parseInt(cursor.getString(2)));
+                player.setPlayerGender(cursor.getString(3));
+                player.setPlayerHand(cursor.getString(4));
+
+                PlayersList.add(player);
+            } while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        return PlayersList;
     }
 
 

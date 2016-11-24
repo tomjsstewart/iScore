@@ -10,6 +10,52 @@ public class PlayerData {
     public PlayerData(){
     }
 
+    private int playerID;
+    private String playerName;
+    private int playerAge;
+    private String playerGender;
+    private String playerHand;
+
+    public void setPlayerID(int playerID) {
+        this.playerID = playerID;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public void setPlayerAge(int playerAge) {
+        this.playerAge = playerAge;
+    }
+
+    public void setPlayerGender(String playerGender) {
+        this.playerGender = playerGender;
+    }
+
+    public void setPlayerHand(String playerHand) {
+        this.playerHand = playerHand;
+    }
+
+    public int getPlayerID() {
+        return playerID;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public int getPlayerAge() {
+        return playerAge;
+    }
+
+    public String getPlayerGender() {
+        return playerGender;
+    }
+
+    public String getPlayerHand() {
+        return playerHand;
+    }
+
     private String[] pointsValues = {"0", "15", "30", "40", "game", "deuce", "ad", "game"};
 
     //Scoring attributes

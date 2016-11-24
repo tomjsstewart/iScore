@@ -24,6 +24,13 @@
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden">
         </activity>
+
+        <activity
+            android:name=".SelectPlayerActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden">
+        </activity>
     </application>
 
 </manifest>
