@@ -51,14 +51,14 @@ public class SelectPlayerActivity extends Activity {
         displayListView();
     }
 
-    /*
+
     @Override
     public void onResume()
     {
         super.onResume();
         displayListView();
     }
-*/
+
     private void displayListView()
     {
         DBHandler db = new DBHandler(this);

@@ -17,7 +17,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         final Button playersListBtn = (Button) findViewById(R.id.profilesBtn);
 
         final DBHandler db = new DBHandler(this);
-        db.deleteForTest();
+        //db.deleteForTest();
 
         startMatchBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,8 +33,8 @@ public class HomeScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                db.addPlayer("Tom Stewart", 17, "Male", "R");
-                db.addPlayer("Ben Stewart", 12, "Male", "R");
+                //db.addPlayer("Tom Stewart", 17, "Male", "R");
+                //db.addPlayer("Ben Stewart", 12, "Male", "R");
                 /*
                 Open the Players profile activity
                  */

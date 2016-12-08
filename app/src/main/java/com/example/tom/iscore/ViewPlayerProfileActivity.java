@@ -50,12 +50,12 @@ public class ViewPlayerProfileActivity extends AppCompatActivity {
         {
             case "R":
                 showPlayerHand.setText("Right");
-                return;
+                break;
             case "L":
                 showPlayerHand.setText("Left");
-                return;
+                break;
             default:
-                return;
+                break;
         }
 
     }

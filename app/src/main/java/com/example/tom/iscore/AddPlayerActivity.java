@@ -17,10 +17,10 @@ import android.widget.ToggleButton;
 
 public class AddPlayerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    String _playerName;
-    int _playerAge;
-    String _playerGender;
-    String _playerHand;
+    String _playerName = "";
+    int _playerAge = 0;
+    String _playerGender = "";
+    String _playerHand = "";
 
     EditText playerNameText;
     EditText PlayerAgeText;
@@ -49,30 +49,45 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
 
 
 
-
-
-
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 _playerName = String.valueOf(playerNameText.getText());
-                _playerAge = Integer.parseInt(playerAgeText.getText().toString());
+                try
+                {
+                    _playerAge = Integer.parseInt(playerAgeText.getText().toString());
+                } catch (NumberFormatException numForEx) {
+                    /*
+                    This will only run if an age is not set.
+                    Error due to trying to convert "" to int.
+                    Set age to -1 so that it is caught by validation and user has to add info
+                     */
+                    _playerAge = -1;
+
+                }
+
                 //_playerHand is set above
                 //_playerHand is set whenever a value is added to it.
+
+                //generate a small message to tell user if save worked or not.
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+                CharSequence msg;
 
                 /*
                 Validate inputs for Age.
                 Others are either unvalidatable or predefined input only
                  */
-                if((_playerAge > 0) && (_playerAge < 200))
+                if((_playerAge > 0) &&
+                        (_playerAge < 200) &&
+                        !(_playerName.equals("")) &&
+                        !(_playerHand.equals("")) &&
+                        !(_playerGender.equals("")))
                 {
                     //.addPlayer returns true if the player was written succesfully and false if not
                     Boolean playerAdded = db.addPlayer(_playerName, _playerAge, _playerGender, _playerHand);
 
-                    //generate a small message to tell user if save worked or not.
-                    Context context = getApplicationContext();
-                    int duration = Toast.LENGTH_SHORT;
-                    CharSequence msg;
+
 
                     if (playerAdded)
                     {
@@ -84,12 +99,19 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
                     }
                     else
                     {
-                        msg = "Somethig went wrong, check player details.";
+                        msg = "Something went wrong, check player details.";
                         duration = Toast.LENGTH_LONG;
                         Toast toast = Toast.makeText(context, msg, duration);
                         toast.show();
                     }
 
+                }
+                else
+                {
+                    msg = "Something went wrong, check player details.";
+                    duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, msg, duration);
+                    toast.show();
                 }
 
             }
@@ -107,6 +129,7 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
+        _playerGender = "";
 
     }
 
@@ -123,6 +146,9 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
             case R.id.setLeftHand:
                 if (checked)
                     _playerHand = "Left";
+                break;
+            default:
+                _playerHand = "";
                 break;
         }
     }
