@@ -95,6 +95,7 @@ public class DBHandler extends SQLiteOpenHelper{
         //Create tables
         db.execSQL(CREATE_PLAYER_TABLE);
         db.execSQL(CREATE_MATCH_DATA_TABLE);
+        db.close();
 
     }
 
@@ -225,6 +226,7 @@ public class DBHandler extends SQLiteOpenHelper{
         }
 
         cursor.close();
+        db.close();
         return PlayersList;
     }
 
@@ -244,6 +246,7 @@ public class DBHandler extends SQLiteOpenHelper{
         {
             mCursor.moveToFirst();
         }
+        db.close();
         return mCursor;
     }
 
@@ -270,6 +273,7 @@ public class DBHandler extends SQLiteOpenHelper{
         }
 
         cursor.close();
+        db.close();
         return player;
     }
 }
