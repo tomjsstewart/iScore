@@ -44,19 +44,8 @@ public class ViewPlayerProfileActivity extends AppCompatActivity {
         showPlayerName.setText(content);
         showPlayerAge.setText(Integer.toString(player.getPlayerAge()));
         showPlayerGender.setText(player.getPlayerGender());
+        showPlayerHand.setText(player.getPlayerHand());
 
-        //Sets the players hand to a word not just letter
-        switch (player.getPlayerHand())
-        {
-            case "R":
-                showPlayerHand.setText("Right");
-                break;
-            case "L":
-                showPlayerHand.setText("Left");
-                break;
-            default:
-                break;
-        }
 
     }
 }
