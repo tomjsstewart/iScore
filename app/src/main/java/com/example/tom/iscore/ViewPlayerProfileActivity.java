@@ -6,6 +6,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -35,7 +37,11 @@ public class ViewPlayerProfileActivity extends AppCompatActivity {
         showPlayerGender = (TextView) findViewById(R.id.ShowPlayerGender);
         showPlayerHand = (TextView) findViewById(R.id.ShowPlayerHand);
 
-        showPlayerName.setText(player.getPlayerName());
+        //Underline the player's name
+        SpannableString content = new SpannableString(player.getPlayerName());
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+
+        showPlayerName.setText(content);
         showPlayerAge.setText(Integer.toString(player.getPlayerAge()));
         showPlayerGender.setText(player.getPlayerGender());
         showPlayerHand.setText(player.getPlayerHand());
