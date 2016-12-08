@@ -1,0 +1,43 @@
+package com.example.tom.iscore;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+
+public class ViewPlayerProfileActivity extends AppCompatActivity {
+
+    TextView showPlayerName;
+    TextView showPlayerAge;
+    TextView showPlayerGender;
+    TextView showPlayerHand;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_player_profile);
+
+        DBHandler db = new DBHandler(this);
+
+        int playerId = getIntent().getIntExtra("ColumnIndex", -1);
+
+        Log.d("Player column index", Integer.toString(playerId));
+
+        PlayerData player = db.getPlayerByID(playerId);
+
+        showPlayerName = (TextView) findViewById(R.id.ShowPlayerName);
+        showPlayerAge = (TextView) findViewById(R.id.ShowPlayerAge);
+        showPlayerGender = (TextView) findViewById(R.id.ShowPlayerGender);
+        showPlayerHand = (TextView) findViewById(R.id.ShowPlayerHand);
+
+        showPlayerName.setText(player.getPlayerName());
+        showPlayerAge.setText(player.getPlayerAge());
+        showPlayerGender.setText(player.getPlayerGender());
+        showPlayerHand.setText(player.getPlayerHand());
+    }
+}

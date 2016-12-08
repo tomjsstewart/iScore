@@ -24,10 +24,10 @@ public class DBHandler extends SQLiteOpenHelper{
     private static final String TABLE_MATCH_DATA = "Playertbl";
 
     //PlayerTbl columns
-    private static final String KEY_PLAYER_NAME = "PlayerName";
-    private static final String KEY_PLAYER_AGE = "PlayerAge";
-    private static final String KEY_PLAYER_GENDER = "PlayerGender";
-    private static final String KEY_PLAYER_HAND = "PlayerHand";
+    public static final String KEY_PLAYER_NAME = "PlayerName";
+    public static final String KEY_PLAYER_AGE = "PlayerAge";
+    public static final String KEY_PLAYER_GENDER = "PlayerGender";
+    public static final String KEY_PLAYER_HAND = "PlayerHand";
 
 
     //MatchDataTbl columns
@@ -41,7 +41,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db)
     {
         String CREATE_PLAYER_TABLE = "CREATE TABLE PlayerTbl ("
-                + "PlayerID INTEGER primary key AUTOINCREMENT, "
+                + "_id INTEGER primary key AUTOINCREMENT, "
                 + "PlayerName VARCHAR(100) NOT NULL, "
                 + "playerAge INTEGER NOT NULL, "
                 + "PlayerGender TEXT, "
@@ -49,7 +49,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
         String CREATE_MATCH_DATA_TABLE = "CREATE TABLE IF NOT EXISTS MatchDataTbl("
                 + "MatchID INTEGER primary key NOT NULL,"
-                + "PlayerID INTEGER primary key NOT NULL,"
+                + "_id INTEGER primary key NOT NULL,"
                 + "TotalPointsWon INTEGER NOT NULL, "
                 + "totalPointsPlayed INTEGER NOT NULL, "
                 + "totalGamesWon INTEGER NOT NULL, "
@@ -90,7 +90,7 @@ public class DBHandler extends SQLiteOpenHelper{
                 + "totalReturnerServeWinners INTEGER NOT NULL, "
                 + "totalDriveVolleyWinners INTEGER NOT NULL, "
                 + "totalHalfVolleyWinners INTEGER NOT NULL, "
-                + "FOREIGN KEY (PlayerID) REFERENCES PlayerTbl(PlayerID));"; //Defines foreign key and tells which table it came from.
+                + "FOREIGN KEY (_id) REFERENCES PlayerTbl(_id));"; //Defines foreign key and tells which table it came from.
 
         //Create tables
         db.execSQL(CREATE_PLAYER_TABLE);
@@ -124,7 +124,7 @@ public class DBHandler extends SQLiteOpenHelper{
         ContentValues data = new ContentValues();
 
         data.put("MatchID", matchID);
-        data.put("PlayerID", playerID);
+        data.put("_id", playerID);
 
         data.put("TotalPointsWon", DataClass.getTotalPointsWon());
         data.put("totalPointsPlayed", DataClass.getTotalPointsPlayed());
@@ -172,7 +172,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
-    public void addPlayer(String playerName,
+    public boolean addPlayer(String playerName,
                           int playerAge,
                           String playerGender,
                           String playerHand)
@@ -188,8 +188,17 @@ public class DBHandler extends SQLiteOpenHelper{
         info.put(KEY_PLAYER_GENDER, playerGender);
         info.put(KEY_PLAYER_HAND, playerHand);
 
-        db.insert(TABLE_PLAYERS, null, info); //Insert row
+        long success = db.insert(TABLE_PLAYERS, null, info); //Insert row
         db.close(); //Close database
+        if (success != -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     public List<PlayerData> getAllPlayers()
@@ -220,5 +229,48 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
+    public Cursor getAllPlayersNamesCursor()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor mCursor = db.rawQuery("SELECT _id, " + KEY_PLAYER_NAME + " FROM PlayerTbl", null);
+
+        /*
+        Cursor mCursor = db.query(TABLE_PLAYERS, new String[] {"_id",
+                        KEY_PLAYER_NAME, KEY_PLAYER_AGE, KEY_PLAYER_GENDER, KEY_PLAYER_HAND},
+                null, null, null, null, null);
+        */
+
+        if (mCursor != null)
+        {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
+
+
+    public PlayerData getPlayerByID(int id)
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM PlayerTbl WHERE " + KEY_PLAYER_NAME + " = " + id , null);
+
+        PlayerData player = new PlayerData();
+
+        //Checks there is data
+        if(cursor.moveToFirst())
+        {
+
+            player.setPlayerID(Integer.parseInt(cursor.getString(0)));
+            player.setPlayerName(cursor.getString(1));
+            player.setPlayerAge(Integer.parseInt(cursor.getString(2)));
+            player.setPlayerGender(cursor.getString(3));
+            player.setPlayerHand(cursor.getString(4));
+
+
+        }
+
+        cursor.close();
+        return player;
+    }
 }
 

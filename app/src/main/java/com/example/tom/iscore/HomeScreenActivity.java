@@ -17,7 +17,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         final Button playersListBtn = (Button) findViewById(R.id.profilesBtn);
 
         final DBHandler db = new DBHandler(this);
-        //db.deleteForTest();
+        db.deleteForTest();
 
         startMatchBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
