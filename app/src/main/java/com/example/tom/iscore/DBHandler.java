@@ -252,7 +252,7 @@ public class DBHandler extends SQLiteOpenHelper{
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM PlayerTbl WHERE " + KEY_PLAYER_NAME + " = " + id , null);
+        Cursor cursor = db.rawQuery("SELECT * FROM PlayerTbl WHERE _id" + " = " + id , null);
 
         PlayerData player = new PlayerData();
 

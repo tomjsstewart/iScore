@@ -28,7 +28,7 @@ public class ViewPlayerProfileActivity extends AppCompatActivity {
 
         Log.d("Player column index", Integer.toString(playerId));
 
-        PlayerData player = db.getPlayerByID(playerId);
+        PlayerData player = db.getPlayerByID(playerId+1);
 
         showPlayerName = (TextView) findViewById(R.id.ShowPlayerName);
         showPlayerAge = (TextView) findViewById(R.id.ShowPlayerAge);
@@ -36,7 +36,7 @@ public class ViewPlayerProfileActivity extends AppCompatActivity {
         showPlayerHand = (TextView) findViewById(R.id.ShowPlayerHand);
 
         showPlayerName.setText(player.getPlayerName());
-        showPlayerAge.setText(player.getPlayerAge());
+        showPlayerAge.setText(Integer.toString(player.getPlayerAge()));
         showPlayerGender.setText(player.getPlayerGender());
         showPlayerHand.setText(player.getPlayerHand());
     }

@@ -105,14 +105,16 @@ public class SelectPlayerActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
                 //Get cursor position of clicked on player
+                Log.d("position", String.valueOf(position));
                 Cursor cursor = (Cursor) listView.getItemAtPosition(position);
 
                 clickedPlayerID = cursor.getInt(cursor.getColumnIndexOrThrow(DBHandler.KEY_PLAYER_NAME));
+                Log.d("clickedPlayerID", String.valueOf(clickedPlayerID));
 
 
                 //Open the viewPlayerProfileActivity screen and pass the column number of the player selected
                 Intent intent = new Intent(SelectPlayerActivity.this, ViewPlayerProfileActivity.class);
-                intent.putExtra("ColumnIndex", clickedPlayerID );
+                intent.putExtra("ColumnIndex", position );
                 startActivity(intent);
 
             }
