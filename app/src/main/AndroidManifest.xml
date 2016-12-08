@@ -22,12 +22,20 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_play_match"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.tom.iscore.HomeScreenActivity" />
+        </activity>
         <activity
             android:name=".SelectPlayerActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.tom.iscore.HomeScreenActivity" />
+        </activity>
         <activity
             android:name=".AddPlayerActivity"
             android:label="@string/title_activity_add_player"
