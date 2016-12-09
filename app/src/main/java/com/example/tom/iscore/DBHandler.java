@@ -276,5 +276,20 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
         return player;
     }
+
+    public Cursor getAllPlayersNamesExceptParmCursor(int id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Return a cursor with all player id's except the one in the parameter
+        Cursor mCursor = db.rawQuery("SELECT _id, " + KEY_PLAYER_NAME + " FROM PlayerTbl WHERE _id != " + id, null);
+
+        if (mCursor != null)
+        {
+            mCursor.moveToFirst();
+        }
+        db.close();
+        return mCursor;
+    }
 }
 
