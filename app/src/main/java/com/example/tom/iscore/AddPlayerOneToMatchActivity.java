@@ -85,7 +85,7 @@ public class AddPlayerOneToMatchActivity extends Activity {
                 //Open AddPlayerTwoToMatchActivity and pass in Player 1 so they can't be picked twice
                 Intent intent = new Intent(AddPlayerOneToMatchActivity.this,
                         AddPlayerTwoToMatchActivity.class);
-                intent.putExtra("PlayerIndex", position );
+                intent.putExtra("PlayerOneId", position );
                 startActivity(intent);
 
             }
