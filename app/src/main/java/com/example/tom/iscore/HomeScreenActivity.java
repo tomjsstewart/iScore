@@ -23,9 +23,9 @@ public class HomeScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 /*
-                Open the PlayMatchActivity
+                Open the AddPlayerToMatchActivity
                  */
-                startActivity(new Intent(HomeScreenActivity.this, PlayMatchActivity.class));
+                startActivity(new Intent(HomeScreenActivity.this, AddPlayerActivity.class));
             }
         });
 
