@@ -22,19 +22,19 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_play_match"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.tom.iscore.HomeScreenActivity" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tom.iscore.HomeScreenActivity" />
         </activity>
         <activity
             android:name=".SelectPlayerActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.tom.iscore.HomeScreenActivity" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tom.iscore.HomeScreenActivity" />
         </activity>
         <activity
             android:name=".AddPlayerActivity"
@@ -54,6 +54,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.tom.iscore.SelectPlayerActivity" />
         </activity>
+        <activity android:name=".AddPlayerToMatchActivity"></activity>
     </application>
 
 </manifest>
