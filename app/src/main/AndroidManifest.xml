@@ -55,8 +55,8 @@
                 android:value="com.example.tom.iscore.SelectPlayerActivity" />
         </activity>
         <activity
-            android:name=".AddPlayerToMatchActivity"
-            android:label="@string/title_activity_add_player_to_match"
+            android:name=".AddPlayerOneToMatchActivity"
+            android:label="@string/title_activity_add_player_one_to_match"
             android:parentActivityName=".HomeScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
