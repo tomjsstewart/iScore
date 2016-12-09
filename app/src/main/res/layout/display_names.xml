@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="#FFFFFF"
+        android:textSize="20sp"
         android:id="@+id/playername"/>
 
 </RelativeLayout>
