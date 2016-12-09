@@ -54,7 +54,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.tom.iscore.SelectPlayerActivity" />
         </activity>
-        <activity android:name=".AddPlayerToMatchActivity"></activity>
+        <activity
+            android:name=".AddPlayerToMatchActivity"
+            android:label="@string/title_activity_add_player_to_match"
+            android:parentActivityName=".HomeScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tom.iscore.HomeScreenActivity" />
+
+        </activity>
     </application>
 
 </manifest>
