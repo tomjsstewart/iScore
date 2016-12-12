@@ -1,5 +1,6 @@
 package com.example.tom.iscore;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.tom.iscore.PlayerData;
 import org.w3c.dom.Text;
 
@@ -422,6 +425,17 @@ public class PlayMatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_match);
         //Force Screen to open Landscape mode
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        int playerOne = getIntent().getIntExtra("PlayerOneId", -1);
+        int playerTwo = getIntent().getIntExtra("PlayerTwoId", -1);
+
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_LONG;
+        CharSequence msg;
+
+        msg = "Player One ID: " + playerOne + ". Player Two ID: " + playerTwo;
+        Toast toast = Toast.makeText(context, msg, duration);
+        toast.show();
 
 
         //Open connection to database
