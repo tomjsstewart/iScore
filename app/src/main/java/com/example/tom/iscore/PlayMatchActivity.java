@@ -427,11 +427,11 @@ public class PlayMatchActivity extends AppCompatActivity {
         //Force Screen to open Landscape mode
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        int playerOne = getIntent().getIntExtra("PlayerOneId", -1);
-        int playerTwo = getIntent().getIntExtra("PlayerTwoId", -1);
+        player1Data.setPlayerID(getIntent().getIntExtra("PlayerOneId", -1));
+        player2Data.setPlayerID(getIntent().getIntExtra("PlayerTwoId", -1));
 
-        Log.d("playerOne id", String.valueOf(playerOne));
-        Log.d("playerTwo id", String.valueOf(playerTwo));
+        Log.d("playerOne id", String.valueOf(player1Data.getPlayerID()));
+        Log.d("playerTwo id", String.valueOf(player2Data.getPlayerID()));
 
 
 
@@ -439,7 +439,7 @@ public class PlayMatchActivity extends AppCompatActivity {
         int duration = Toast.LENGTH_LONG;
         CharSequence msg;
 
-        msg = "Player One ID: " + playerOne + ". Player Two ID: " + playerTwo;
+        msg = "Player One ID: " + player1Data.getPlayerID() + ". Player Two ID: " + player2Data.getPlayerID();
         Toast toast = Toast.makeText(context, msg, duration);
         toast.show();
 
