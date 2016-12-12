@@ -91,7 +91,22 @@ public class AddPlayerTwoToMatchActivity extends Activity {
 
                 //pass the players to the PlayMatchActivity
                 intent.putExtra("PlayerOneId", _playerOneId);
-                intent.putExtra("PlayerTwoId", position);
+                //position += 1;
+
+                Log.d("playerOne id", String.valueOf(_playerOneId));
+                Log.d("playerTwo pos", String.valueOf(position));
+
+
+                if (_playerOneId == position)
+                {
+                    position += 1;
+                }
+                else if(position < _playerOneId)
+                {
+                    position += 2;
+                }
+
+                intent.putExtra("PlayerTwoId", position + 1);
                 startActivity(intent);
 
             }

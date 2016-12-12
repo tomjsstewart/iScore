@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -428,6 +429,11 @@ public class PlayMatchActivity extends AppCompatActivity {
 
         int playerOne = getIntent().getIntExtra("PlayerOneId", -1);
         int playerTwo = getIntent().getIntExtra("PlayerTwoId", -1);
+
+        Log.d("playerOne id", String.valueOf(playerOne));
+        Log.d("playerTwo id", String.valueOf(playerTwo));
+
+
 
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_LONG;
