@@ -36,7 +36,7 @@ public class PlayMatchActivity extends AppCompatActivity {
     PlayerData player2Data = new PlayerData();
 
     //Initialise database
-    DBHandler database;
+    DBHandler database = new DBHandler(this);
 
     private int playerClicked = 0;
 
@@ -131,6 +131,20 @@ public class PlayMatchActivity extends AppCompatActivity {
     {
         player1NameTextView.setEnabled(false);
         player2NameTextView.setEnabled(false);
+
+        //Generate matchID
+
+        //Save player 1
+        database.saveMatch(matchId,
+                player1Data.getPlayerID(),
+                player1Data);
+
+        //Save player 2
+        database.saveMatch(matchId,
+                player2Data.getPlayerID(),
+                player2Data);
+
+
     }
 
 
@@ -442,10 +456,6 @@ public class PlayMatchActivity extends AppCompatActivity {
         msg = "Player One ID: " + player1Data.getPlayerID() + ". Player Two ID: " + player2Data.getPlayerID();
         Toast toast = Toast.makeText(context, msg, duration);
         toast.show();
-
-
-        //Open connection to database
-        database = new DBHandler(this);
 
 
         player1NameTextView = (TextView) findViewById(R.id.player1NameTextView);
