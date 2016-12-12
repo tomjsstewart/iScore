@@ -202,34 +202,6 @@ public class DBHandler extends SQLiteOpenHelper{
 
     }
 
-    public List<PlayerData> getAllPlayers()
-    {
-        List<PlayerData> PlayersList = new ArrayList<PlayerData>();
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM PlayerTbl", null);
-
-        if(cursor.moveToFirst())
-        {
-            do
-            {
-                PlayerData player = new PlayerData();
-
-                player.setPlayerID(Integer.parseInt(cursor.getString(0)));
-                player.setPlayerName(cursor.getString(1));
-                player.setPlayerAge(Integer.parseInt(cursor.getString(2)));
-                player.setPlayerGender(cursor.getString(3));
-                player.setPlayerHand(cursor.getString(4));
-
-                PlayersList.add(player);
-            } while(cursor.moveToNext());
-        }
-
-        cursor.close();
-        db.close();
-        return PlayersList;
-    }
-
 
     public Cursor getAllPlayersNamesCursor()
     {
