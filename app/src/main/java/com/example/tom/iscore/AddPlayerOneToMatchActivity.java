@@ -14,7 +14,9 @@ import android.widget.SimpleCursorAdapter;
 
 public class AddPlayerOneToMatchActivity extends Activity {
 
-    private SimpleCursorAdapter dataAdapter;
+    private ListView listView;
+
+    private SimpleCursorAdapter dataAdapter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,20 +61,20 @@ public class AddPlayerOneToMatchActivity extends Activity {
                 R.id.playername
         };
 
-        dataAdapter = new SimpleCursorAdapter(
+        dataAdapter2 = new SimpleCursorAdapter(
                 this, R.layout.display_names,
                 cursor,
                 player_names,
                 to,
                 0);
 
-        ListView listView = (ListView) findViewById(R.id.listView1);
+        listView = (ListView) findViewById(R.id.listView1);
 
-        Log.d("List view", listView.toString());
+        //Log.d("List view", listView.toString());
 
 
 
-        listView.setAdapter(dataAdapter);
+        listView.setAdapter(dataAdapter2);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
