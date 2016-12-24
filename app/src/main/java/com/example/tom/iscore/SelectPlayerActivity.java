@@ -117,6 +117,7 @@ public class SelectPlayerActivity extends Activity {
 
                 //Open the viewPlayerProfileActivity screen and pass the column number of the player selected
                 Intent intent = new Intent(SelectPlayerActivity.this, ViewPlayerProfileActivity.class);
+                //Pass column index of player clicked
                 intent.putExtra("ColumnIndex", position );
                 startActivity(intent);
 
