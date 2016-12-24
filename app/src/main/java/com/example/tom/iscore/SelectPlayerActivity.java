@@ -63,6 +63,10 @@ public class SelectPlayerActivity extends Activity {
     {
         DBHandler db = new DBHandler(this);
 
+        /*
+        Get a cursor that points to the first position in a cursor conating all players names from
+         the database
+         */
         Cursor cursor = db.getAllPlayersNamesCursor();
 
         Log.d("Show cursor", cursor.toString());
@@ -77,15 +81,18 @@ public class SelectPlayerActivity extends Activity {
             Log.d("displayListView", "no players in database");
         }
 
-
+        //Points to the column from the database to display on the screen
         String[] player_names = new String[] {
                 DBHandler.KEY_PLAYER_NAME,
         };
 
+        //points to the layout id of the TextView used in the ListView
+        //found in ...\\layout\display_names.xml
         int[] to = new int[]{
                 R.id.playername
         };
 
+        //Defines the SimpleCursorAdapter, giving the required inputs
         dataAdapter = new SimpleCursorAdapter(
                 this, R.layout.display_names,
                 cursor,
@@ -93,24 +100,20 @@ public class SelectPlayerActivity extends Activity {
                 to,
                 0);
 
+        //Find the ListView
         ListView listView = (ListView) findViewById(R.id.listView1);
 
         Log.d("List view", listView.toString());
 
-
-
+        //Sets the adapter of the list view to be the cursor adapter
         listView.setAdapter(dataAdapter);
 
+        //Code to handle a click on any item in the ListView
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
                 //Get cursor position of clicked on player
                 Log.d("position", String.valueOf(position));
-                Cursor cursor = (Cursor) listView.getItemAtPosition(position);
-
-                clickedPlayerID = cursor.getInt(cursor.getColumnIndexOrThrow(DBHandler.KEY_PLAYER_NAME));
-                Log.d("clickedPlayerID", String.valueOf(clickedPlayerID));
-
 
                 //Open the viewPlayerProfileActivity screen and pass the column number of the player selected
                 Intent intent = new Intent(SelectPlayerActivity.this, ViewPlayerProfileActivity.class);
@@ -121,7 +124,5 @@ public class SelectPlayerActivity extends Activity {
         });
 
     }
-
-
-
 }
+
