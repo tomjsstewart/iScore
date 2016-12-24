@@ -87,7 +87,7 @@ public class SelectPlayerActivity extends Activity {
         };
 
         //points to the layout id of the TextView used in the ListView
-        //found in ...\\layout\display_names.xml
+        //found in ...\layout\display_names.xml this addresss is also passed to the SimpleCursorAdapter
         int[] to = new int[]{
                 R.id.playername
         };
