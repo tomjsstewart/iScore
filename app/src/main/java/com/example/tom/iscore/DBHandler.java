@@ -205,17 +205,16 @@ public class DBHandler extends SQLiteOpenHelper{
 
     public Cursor getAllPlayersNamesCursor()
     {
+        //Open a database connection
         SQLiteDatabase db = this.getReadableDatabase();
+
+        //Create a cursor which points to the player names
         Cursor mCursor = db.rawQuery("SELECT _id, " + KEY_PLAYER_NAME + " FROM PlayerTbl", null);
 
-        /*
-        Cursor mCursor = db.query(TABLE_PLAYERS, new String[] {"_id",
-                        KEY_PLAYER_NAME, KEY_PLAYER_AGE, KEY_PLAYER_GENDER, KEY_PLAYER_HAND},
-                null, null, null, null, null);
-        */
-
+        //Check there is data
         if (mCursor != null)
         {
+            //If there is data make sure the cursor points to the first item, so no one is missed off
             mCursor.moveToFirst();
         }
         db.close();
