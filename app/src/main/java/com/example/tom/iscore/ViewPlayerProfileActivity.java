@@ -29,12 +29,19 @@ public class ViewPlayerProfileActivity extends AppCompatActivity {
 
         DBHandler db = new DBHandler(this);
 
-        int playerId = getIntent().getIntExtra("ColumnIndex", -1);
+        /*
+        Get the player ID from the position passed in by the SelectPlayer screen.
+        The +1 is needed because the ListView is zero-indexed, but the SQLite database is one-indexed.
+        This means that to turn any position in a list view to an ID one must be added to it
+         */
+        int playerId = (getIntent().getIntExtra("ColumnIndex", -1)) + 1;
 
         Log.d("Player column index", Integer.toString(playerId));
 
-        PlayerData player = db.getPlayerByID(playerId+1);
+        //Select that player and get a PlayerData instance that contains all of their data.
+        PlayerData player = db.getPlayerByID(playerId);
 
+        //Get the TextViews so that they can be updated.
         showPlayerName = (TextView) findViewById(R.id.ShowPlayerName);
         showPlayerAge = (TextView) findViewById(R.id.ShowPlayerAge);
         showPlayerGender = (TextView) findViewById(R.id.ShowPlayerGender);
@@ -44,6 +51,7 @@ public class ViewPlayerProfileActivity extends AppCompatActivity {
         SpannableString content = new SpannableString(player.getPlayerName());
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
 
+        //Update the screen to show this information.
         showPlayerName.setText(content);
         showPlayerAge.setText(Integer.toString(player.getPlayerAge()));
         showPlayerGender.setText(player.getPlayerGender());
