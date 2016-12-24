@@ -48,6 +48,7 @@
         <activity
             android:name=".ViewPlayerProfileActivity"
             android:label="@string/title_activity_view_player_profile"
+            android:screenOrientation="portrait"
             android:parentActivityName=".SelectPlayerActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
