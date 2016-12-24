@@ -239,16 +239,18 @@ public class DBHandler extends SQLiteOpenHelper{
 
     public PlayerData getPlayerByID(int id)
     {
-
+        //Open connection
         SQLiteDatabase db = this.getWritableDatabase();
+        //Query the database to get the data for the player with the given ID
         Cursor cursor = db.rawQuery("SELECT * FROM PlayerTbl WHERE _id" + " = " + id , null);
 
+        //Instanciate a new PlayerData that can be used to store the data from the database
         PlayerData player = new PlayerData();
 
         //Checks there is data
         if(cursor.moveToFirst())
         {
-
+            //Set the relevant attributes within the PlayerData instance
             player.setPlayerID(Integer.parseInt(cursor.getString(0)));
             player.setPlayerName(cursor.getString(1));
             player.setPlayerAge(Integer.parseInt(cursor.getString(2)));
