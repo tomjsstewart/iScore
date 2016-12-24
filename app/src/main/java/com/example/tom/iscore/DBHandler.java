@@ -251,6 +251,7 @@ public class DBHandler extends SQLiteOpenHelper{
         if(cursor.moveToFirst())
         {
             //Set the relevant attributes within the PlayerData instance
+            //Columns are zero-indexed and follow the order that the database was declared
             player.setPlayerID(Integer.parseInt(cursor.getString(0)));
             player.setPlayerName(cursor.getString(1));
             player.setPlayerAge(Integer.parseInt(cursor.getString(2)));
