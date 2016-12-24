@@ -64,7 +64,7 @@ public class SelectPlayerActivity extends Activity {
         DBHandler db = new DBHandler(this);
 
         /*
-        Get a cursor that points to the first position in a cursor conating all players names from
+        Get a cursor that points to the first position in a cursor containing all players names from
          the database
          */
         Cursor cursor = db.getAllPlayersNamesCursor();
@@ -87,7 +87,7 @@ public class SelectPlayerActivity extends Activity {
         };
 
         //points to the layout id of the TextView used in the ListView
-        //found in ...\layout\display_names.xml this addresss is also passed to the SimpleCursorAdapter
+        //found in ...\layout\display_names.xml this address is also passed to the SimpleCursorAdapter
         int[] to = new int[]{
                 R.id.playername
         };

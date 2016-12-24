@@ -244,7 +244,7 @@ public class DBHandler extends SQLiteOpenHelper{
         //Query the database to get the data for the player with the given ID
         Cursor cursor = db.rawQuery("SELECT * FROM PlayerTbl WHERE _id" + " = " + id , null);
 
-        //Instanciate a new PlayerData that can be used to store the data from the database
+        //Instantiate a new PlayerData that can be used to store the data from the database
         PlayerData player = new PlayerData();
 
         //Checks there is data

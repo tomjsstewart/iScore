@@ -76,7 +76,7 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
 
                 /*
                 Validate inputs for Age.
-                Others are either unvalidatable or predefined input only
+                Others are either unvalidated or predefined input only
                  */
                 if((_playerAge > 0) &&
                         (_playerAge < 200) &&
@@ -84,7 +84,7 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
                         !(_playerHand.equals("")) &&
                         !(_playerGender.equals("")))
                 {
-                    //.addPlayer returns true if the player was written succesfully and false if not
+                    //.addPlayer returns true if the player was written successfully and false if not
                     Boolean playerAdded = db.addPlayer(_playerName, _playerAge, _playerGender, _playerHand);
 
 
