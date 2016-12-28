@@ -179,6 +179,11 @@ public class DBHandler extends SQLiteOpenHelper{
                           String playerHand)
 
     {
+        /*
+        Function to save a players information in to the database, function assumes that all inputs
+        it is given are valid, if an error occurs false is returned, if the data is correctly saved
+        true is returned.
+         */
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues info = new ContentValues();
@@ -199,7 +204,6 @@ public class DBHandler extends SQLiteOpenHelper{
         {
             return false;
         }
-
     }
 
 

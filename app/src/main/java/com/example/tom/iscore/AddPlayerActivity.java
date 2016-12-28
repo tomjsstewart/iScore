@@ -52,7 +52,11 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Boolean playerAdded = false; //Default value can only be updated if data saved correctly
+
                 _playerName = String.valueOf(playerNameText.getText());
+
+                //Read the age in as a integer
                 try
                 {
                     _playerAge = Integer.parseInt(playerAgeText.getText().toString());
@@ -75,8 +79,9 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
                 CharSequence msg;
 
                 /*
-                Validate inputs for Age.
+                Validate inputs for Age >0 & <200.
                 Others are either unvalidated or predefined input only
+                Check that no values are default
                  */
                 if((_playerAge > 0) &&
                         (_playerAge < 200) &&
@@ -85,33 +90,42 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
                         !(_playerGender.equals("")))
                 {
                     //.addPlayer returns true if the player was written successfully and false if not
-                    Boolean playerAdded = db.addPlayer(_playerName, _playerAge, _playerGender, _playerHand);
+                    playerAdded = db.addPlayer(_playerName, _playerAge, _playerGender, _playerHand);
 
 
 
                     if (playerAdded)
                     {
+                        /*
+                        Display a success message to the user and exit the screen back to the SelectPlayerActivity
+                         */
                         msg = "Player saved.";
                         Toast toast = Toast.makeText(context, msg, duration);
-                        toast.show();
-                        finish();
+                        toast.show(); //Display message
+                        finish(); //Exit screen
                         return;
                     }
                     else
                     {
+                        /*
+                        Display an error message if something went wrong with the save
+                         */
                         msg = "Something went wrong, check player details.";
                         duration = Toast.LENGTH_LONG;
                         Toast toast = Toast.makeText(context, msg, duration);
-                        toast.show();
+                        toast.show(); //Display message
                     }
 
                 }
                 else
                 {
+                    /*
+                    Display an error message is one or more of the inputs is invalid
+                     */
                     msg = "Something went wrong, check player details.";
                     duration = Toast.LENGTH_LONG;
                     Toast toast = Toast.makeText(context, msg, duration);
-                    toast.show();
+                    toast.show(); //dispay message
                 }
 
             }
@@ -124,16 +138,23 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
         /*
         Function to set value to _playerGender when an option is selected
          */
-        _playerGender = (String) parent.getItemAtPosition(pos);
 
+        //From the position selected get the String value of the option selected
+        _playerGender = (String) parent.getItemAtPosition(pos);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
+        /*
+        Function to set the player gender to a default if no option is selected.
+         */
         _playerGender = "";
-
     }
 
     public void onRadioButtonClicked(View view) {
+        /*
+        Function to handle clicks on a radio button and update the player hand based on the
+        radio button currently selected.
+         */
 
         boolean checked = ((RadioButton) view).isChecked();
 
