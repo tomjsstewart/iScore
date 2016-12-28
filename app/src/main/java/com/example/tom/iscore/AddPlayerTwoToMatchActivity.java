@@ -26,6 +26,8 @@ public class AddPlayerTwoToMatchActivity extends Activity {
 
         _playerOneId = getIntent().getIntExtra("PlayerOneId", -1);
 
+        displayListView();
+
     }
 
     @Override

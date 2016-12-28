@@ -24,7 +24,7 @@ public class AddPlayerOneToMatchActivity extends Activity {
         setContentView(R.layout.activity_add_player_one_to_match);
         //Force Screen to open Portrait mode
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        displayListView();
     }
 
     @Override
@@ -36,6 +36,7 @@ public class AddPlayerOneToMatchActivity extends Activity {
 
     private void displayListView()
     {
+        Log.d("disp", "In display list view");
         DBHandler db = new DBHandler(this);
 
         Cursor cursor = db.getAllPlayersNamesCursor();
@@ -92,6 +93,6 @@ public class AddPlayerOneToMatchActivity extends Activity {
 
             }
         });
-
+        Log.d("ist", "end of disp list view");
     }
 }
