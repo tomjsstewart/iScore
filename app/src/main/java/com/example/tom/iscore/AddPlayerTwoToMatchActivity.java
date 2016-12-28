@@ -24,6 +24,7 @@ public class AddPlayerTwoToMatchActivity extends Activity {
         //Force Screen to open Portrait mode
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        //Read in the column index of player one
         _playerOneId = getIntent().getIntExtra("PlayerOneId", -1);
 
         displayListView();

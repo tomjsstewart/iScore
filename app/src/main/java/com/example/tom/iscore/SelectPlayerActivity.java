@@ -120,7 +120,6 @@ public class SelectPlayerActivity extends Activity {
                 //Pass column index of player clicked
                 intent.putExtra("ColumnIndex", position );
                 startActivity(intent);
-
             }
         });
 
