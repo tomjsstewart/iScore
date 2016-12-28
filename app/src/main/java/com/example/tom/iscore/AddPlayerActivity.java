@@ -139,15 +139,15 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
 
         // Check which radio button was clicked
         switch(view.getId()) {
-            case R.id.setRightHand:
-                if (checked)
+            case R.id.setRightHand: //Right hand
+                if (checked) //Check that this button is checked
                     _playerHand = "Right";
                 break;
-            case R.id.setLeftHand:
-                if (checked)
+            case R.id.setLeftHand: //Left hand
+                if (checked) //Check that this button is checked
                     _playerHand = "Left";
                 break;
-            default:
+            default: //If neither
                 _playerHand = "";
                 break;
         }
