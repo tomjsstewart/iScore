@@ -291,5 +291,38 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
+    public int generateMatchID()
+    {
+        /*
+        Function to get the next match id as it is repeated in the database, so cant be an auto-increment
+         */
+
+        //Open connection to the database
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //Query the database for all matches
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_MATCH_DATA, null);
+
+        /*
+        Check there are matches, if there are move to last and return the match id + 1 as the new Id
+        if there are no previous matches assume first match and return a match id of 1.
+         */
+        if (cursor.moveToLast())//If there is a last
+        {
+            //get the previous match ID, add one to get new match id, close database connection and
+            //return match ID
+            Integer matchId = (Integer.parseInt(cursor.getString(0)) + 1);
+            db.close();
+            return matchId;
+        }
+        else
+        {
+            //There are no previous matches so return 1 as a first match, close database connection
+            //and return the match ID
+            db.close();
+            return 1;
+        }
+    }
+
 }
 
