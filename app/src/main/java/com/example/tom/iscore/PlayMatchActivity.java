@@ -36,7 +36,7 @@ public class PlayMatchActivity extends AppCompatActivity {
     PlayerData player2Data = new PlayerData();
 
     //Initialise database
-    DBHandler database = new DBHandler(this);
+    DBHandler db = new DBHandler(this);
 
     private int playerClicked = 0;
 
@@ -135,15 +135,15 @@ public class PlayMatchActivity extends AppCompatActivity {
         //Generate matchID
 
         //Save player 1
-        database.saveMatch(matchId,
+        /*db.saveMatch(matchId,
                 player1Data.getPlayerID(),
                 player1Data);
 
         //Save player 2
-        database.saveMatch(matchId,
+        db.saveMatch(matchId,
                 player2Data.getPlayerID(),
                 player2Data);
-
+*/
 
     }
 
@@ -441,13 +441,8 @@ public class PlayMatchActivity extends AppCompatActivity {
         //Force Screen to open Landscape mode
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        player1Data.setPlayerID(getIntent().getIntExtra("PlayerOneId", -1));
-        player2Data.setPlayerID(getIntent().getIntExtra("PlayerTwoId", -1));
-
-        Log.d("playerOne id", String.valueOf(player1Data.getPlayerID()));
-        Log.d("playerTwo id", String.valueOf(player2Data.getPlayerID()));
-
-
+        player1Data = db.getPlayerByID(getIntent().getIntExtra("PlayerOneId", -1));
+        player2Data = db.getPlayerByID(getIntent().getIntExtra("PlayerTwoId", -1));
 
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_LONG;
@@ -520,11 +515,5 @@ public class PlayMatchActivity extends AppCompatActivity {
 
             }
         });
-
-
-
     }
-
-
-
 }

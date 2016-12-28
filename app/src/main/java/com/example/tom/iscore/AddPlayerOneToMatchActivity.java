@@ -36,7 +36,6 @@ public class AddPlayerOneToMatchActivity extends Activity {
 
     private void displayListView()
     {
-        Log.d("disp", "In display list view");
         DBHandler db = new DBHandler(this);
 
         Cursor cursor = db.getAllPlayersNamesCursor();
@@ -71,28 +70,20 @@ public class AddPlayerOneToMatchActivity extends Activity {
 
         listView = (ListView) findViewById(R.id.listView1);
 
-        //Log.d("List view", listView.toString());
-
-
 
         listView.setAdapter(dataAdapter2);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
-                //Get cursor position of clicked on player
-                Log.d("position", String.valueOf(position));
-                Cursor cursor = (Cursor) listView.getItemAtPosition(position);
-
-
                 //Open AddPlayerTwoToMatchActivity and pass in Player 1 so they can't be picked twice
                 Intent intent = new Intent(AddPlayerOneToMatchActivity.this,
                         AddPlayerTwoToMatchActivity.class);
+                //position is incremented to ensure that it is the ID
                 intent.putExtra("PlayerOneId", position + 1 );
                 startActivity(intent);
 
             }
         });
-        Log.d("ist", "end of disp list view");
     }
 }

@@ -26,6 +26,7 @@ public class AddPlayerTwoToMatchActivity extends Activity {
 
         //Read in the column index of player one
         _playerOneId = getIntent().getIntExtra("PlayerOneId", -1);
+        Log.d("player one id ", String.valueOf(_playerOneId));
 
         displayListView();
 
@@ -44,7 +45,7 @@ public class AddPlayerTwoToMatchActivity extends Activity {
 
         Cursor cursor = db.getAllPlayersNamesExceptParmCursor(_playerOneId);
 
-        Log.d("Show cursor", cursor.toString());
+        //Log.d("Show cursor", cursor.toString());
 
         if (cursor == null)
         {
@@ -74,42 +75,27 @@ public class AddPlayerTwoToMatchActivity extends Activity {
 
         ListView listView = (ListView) findViewById(R.id.listView1);
 
-        Log.d("List view", listView.toString());
-
-
 
         listView.setAdapter(dataAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
-                //Get cursor position of clicked on player
-                Log.d("position", String.valueOf(position));
-                Cursor cursor = (Cursor) listView.getItemAtPosition(position);
-
-
                 //Open AddPlayerTwoToMatchActivity and pass in Player 1 so they can't be picked twice
                 Intent intent = new Intent(AddPlayerTwoToMatchActivity.this,
                         PlayMatchActivity.class);
 
                 //pass the players to the PlayMatchActivity
                 intent.putExtra("PlayerOneId", _playerOneId);
-                //position += 1;
+                //Turn position in to Id
+                position += 1;
 
-                Log.d("playerOne id", String.valueOf(_playerOneId));
-                Log.d("playerTwo pos", String.valueOf(position));
-
-
-                if (_playerOneId == position)
+                //This is to account for the missing player
+                if (_playerOneId <= position)
                 {
                     position += 1;
                 }
-                else if(position < _playerOneId)
-                {
-                    position += 2;
-                }
-
-                intent.putExtra("PlayerTwoId", position + 1);
+                intent.putExtra("PlayerTwoId", position);
                 startActivity(intent);
 
             }
