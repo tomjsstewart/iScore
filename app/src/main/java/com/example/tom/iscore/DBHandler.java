@@ -40,6 +40,9 @@ public class DBHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+        /*
+        Function to create the tables to store player infomation and the match data generated
+         */
         String CREATE_PLAYER_TABLE = "CREATE TABLE PlayerTbl ("
                 + "_id INTEGER primary key AUTOINCREMENT, "
                 + "PlayerName VARCHAR(100) NOT NULL, "
@@ -121,6 +124,10 @@ public class DBHandler extends SQLiteOpenHelper{
 
     public void saveMatch(int matchID, int playerID, PlayerData DataClass)
     {
+        /*
+        Function to save any matches that are completed.
+        Data is read directly from  the PlayerData class instance for the player's data being saved.
+         */
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues data = new ContentValues();
 
@@ -209,6 +216,10 @@ public class DBHandler extends SQLiteOpenHelper{
 
     public Cursor getAllPlayersNamesCursor()
     {
+        /*
+        Function that returns a cursor that holds all of the players names and Id's
+        This can then be queried.
+         */
         //Open a database connection
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -227,6 +238,11 @@ public class DBHandler extends SQLiteOpenHelper{
 
     public Cursor getAllPlayersNamesExceptParmCursor(int id)
     {
+        /*
+        Function that returns a cursor that holds all of the players names and Id's, except that of
+        the ID passed in as the parameter.
+        This can then be queried.
+         */
         SQLiteDatabase db = this.getReadableDatabase();
 
         //Return a cursor with all player id's except the one in the parameter
@@ -243,6 +259,10 @@ public class DBHandler extends SQLiteOpenHelper{
 
     public PlayerData getPlayerByID(int id)
     {
+        /*
+        Function to read all of the data for a specific player from the database.
+        Data is returned as an instance of PlayerData
+         */
         //Open connection
         SQLiteDatabase db = this.getWritableDatabase();
         //Query the database to get the data for the player with the given ID
