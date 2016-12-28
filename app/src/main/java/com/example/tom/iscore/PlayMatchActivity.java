@@ -133,9 +133,10 @@ public class PlayMatchActivity extends AppCompatActivity {
         player2NameTextView.setEnabled(false);
 
         //Generate matchID
+        Integer matchId = db.generateMatchID();
 
         //Save player 1
-        /*db.saveMatch(matchId,
+        db.saveMatch(matchId,
                 player1Data.getPlayerID(),
                 player1Data);
 
@@ -143,7 +144,7 @@ public class PlayMatchActivity extends AppCompatActivity {
         db.saveMatch(matchId,
                 player2Data.getPlayerID(),
                 player2Data);
-*/
+
 
     }
 
