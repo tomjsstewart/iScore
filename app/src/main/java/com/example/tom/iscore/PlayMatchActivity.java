@@ -43,6 +43,13 @@ public class PlayMatchActivity extends AppCompatActivity {
     public void checkWinningGameSetOrMatch()
     {
         /*
+        function to check if either player has won a game, set or the match and adjust scores
+        accordingly, if match has been won, call endMatch method to stop further inputs and save
+        match data.
+         */
+
+
+        /*
          If either player has won a game then reset all points to 0;
          */
         if (
@@ -56,7 +63,7 @@ public class PlayMatchActivity extends AppCompatActivity {
         }
 
         /*
-         If either player has won a game reset games
+         If either player has won a set reset games
          */
         if (
                 ((player1Data.getGamesThisSet() >=6) && ((player2Data.getGamesThisSet()+2) <= player1Data.getGamesThisSet())) ||
@@ -73,8 +80,7 @@ public class PlayMatchActivity extends AppCompatActivity {
          */
         if (player1Data.getSetsThisMatch() == 3 || player2Data.getSetsThisMatch() == 3)
         {
-            player1NameTextView.setEnabled(false);
-            player2NameTextView.setEnabled(false);
+           endMatch();
         }
 
         updateScreen();
@@ -83,6 +89,9 @@ public class PlayMatchActivity extends AppCompatActivity {
 
     public void updateScreen()
     {
+        /*
+        Function to update the values of the TextView on the screen.
+         */
         player1PointsTextView.setText(pointsValues[player1Data.getPointsThisGame()]);
         player1GamesTextView.setText(String.format("%d", player1Data.getGamesThisSet()));
         player1SetsTextView.setText(String.format("%d", player1Data.getSetsThisMatch()));
@@ -129,6 +138,9 @@ public class PlayMatchActivity extends AppCompatActivity {
 
     public void endMatch()
     {
+        /*
+        Function to handle the end of a match.
+         */
         player1NameTextView.setEnabled(false);
         player2NameTextView.setEnabled(false);
 
@@ -444,15 +456,6 @@ public class PlayMatchActivity extends AppCompatActivity {
 
         player1Data = db.getPlayerByID(getIntent().getIntExtra("PlayerOneId", -1));
         player2Data = db.getPlayerByID(getIntent().getIntExtra("PlayerTwoId", -1));
-
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_LONG;
-        CharSequence msg;
-
-        msg = "Player One ID: " + player1Data.getPlayerID() + ". Player Two ID: " + player2Data.getPlayerID();
-        Toast toast = Toast.makeText(context, msg, duration);
-        toast.show();
-
 
         player1NameTextView = (TextView) findViewById(R.id.player1NameTextView);
         player1PointsTextView = (TextView) findViewById(R.id.player1PointsTextView);
