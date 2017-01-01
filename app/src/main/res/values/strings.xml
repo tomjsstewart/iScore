@@ -4,5 +4,6 @@
     <string name="title_activity_add_player">AddPlayerActivity</string>
     <string name="title_activity_add_player_one_to_match">AddPlayerOneToMatchActivity</string>
     <string name="title_activity_view_player_profile">ViewPlayerProfileActivity</string>
+    <string name="title_activity_history">HistoryActivity</string>
 
 </resources>
