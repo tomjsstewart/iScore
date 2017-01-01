@@ -15,6 +15,7 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         final Button startMatchBtn1 = (Button) findViewById(R.id.startMatchBtn);
         final Button playersListBtn = (Button) findViewById(R.id.profilesBtn);
+        final Button historyBtn = (Button) findViewById(R.id.HistoryBtn);
 
         final DBHandler db = new DBHandler(this);
         //db.deleteForTest();
@@ -39,6 +40,16 @@ public class HomeScreenActivity extends AppCompatActivity {
                 Open the Players profile activity
                  */
                 startActivity(new Intent(HomeScreenActivity.this, SelectPlayerActivity.class));
+            }
+        });
+
+        historyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                Open HistoryActivity
+                 */
+                startActivity(new Intent(HomeScreenActivity.this, HistoryActivity.class));
             }
         });
     }
