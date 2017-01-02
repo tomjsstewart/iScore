@@ -344,10 +344,10 @@ public class DBHandler extends SQLiteOpenHelper{
 
         //Query the database for all matches
         Cursor cursor = db.rawQuery("SELECT "
-                + "PlayerTbl.PlayerName AS Player1, MatchDataTbl.opp_Name AS Player2, MatchDataTbl.score AS Score "
+                + "PlayerTbl.PlayerName AS _id, MatchDataTbl.opp_Name AS Player2, MatchDataTbl.score AS Score "
                 + "FROM PlayerTbl "
                 + "JOIN MatchDataTbl ON PlayerTbl._id = MatchDataTbl._id "
-                + "WHERE MatchDataTbl.ROWID % 2 = 0;", null);
+                + "WHERE MatchDataTbl.ROWID % 2 = 1;", null);
         
 
 
