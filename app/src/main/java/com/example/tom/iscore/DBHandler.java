@@ -20,7 +20,7 @@ public class DBHandler extends SQLiteOpenHelper{
     private static final int DATABASE_VERSION = 1;
 
     //Table names
-    private static final String TABLE_PLAYERS = "Playertbl";
+    private static final String TABLE_PLAYERS = "PlayerTbl";
     private static final String TABLE_MATCH_DATA = "MatchDataTbl";
 
     //PlayerTbl columns
@@ -344,10 +344,10 @@ public class DBHandler extends SQLiteOpenHelper{
 
         //Query the database for all matches
         Cursor cursor = db.rawQuery("SELECT "
-                + "_id, "
-                + "opp_id, "
-                + "score "
-                + "FROM MatchDataTbl WHERE ROWID % 2 = 0;", null);
+                + "PlayerTbl.PlayerName AS Player1, PlayerTbl.PlayerName AS Player2, MatchDataTbl.score AS Score FROM MatchDataTbl "
+                + "JOIN PlayerTbl ON Player1 = MatchDataTbl._id "
+                + "JOIN PlayerTbl ON Player2 = MatchDataTbl.opp_id "
+                + "WHERE ROWID % 2 = 0;", null);
 
         cursor.moveToFirst();
         db.close();
