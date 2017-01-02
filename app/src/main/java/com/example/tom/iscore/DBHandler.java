@@ -53,7 +53,7 @@ public class DBHandler extends SQLiteOpenHelper{
         String CREATE_MATCH_DATA_TABLE = "CREATE TABLE IF NOT EXISTS MatchDataTbl("
                 + "MatchID INTEGER NOT NULL, "
                 + "_id INTEGER NOT NULL, "
-                + "opp_id INTEGER NOT NULL, "
+                + "opp_Name VARCHAR(100) NOT NULL, "
                 + "score TEXT NOT NULL, "
                 + "TotalPointsWon INTEGER NOT NULL, "
                 + "totalPointsPlayed INTEGER NOT NULL, "
@@ -126,7 +126,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
-    public void saveMatch(int matchID, int playerID, int oppID, String score, PlayerData DataClass)
+    public void saveMatch(int matchID, int playerID, String opp_Name, String score, PlayerData DataClass)
     {
         /*
         Function to save any matches that are completed.
@@ -137,7 +137,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
         data.put("MatchID", matchID);
         data.put("_id", playerID);
-        data.put("opp_id", oppID);
+        data.put("opp_Name", opp_Name);
 
         data.put("score", score);
 
@@ -344,10 +344,10 @@ public class DBHandler extends SQLiteOpenHelper{
 
         //Query the database for all matches
         Cursor cursor = db.rawQuery("SELECT "
-                + "PlayerTbl.PlayerName AS Player1, PlayerTbl.PlayerName AS Player2, MatchDataTbl.score AS Score FROM MatchDataTbl "
-                + "JOIN PlayerTbl ON Player1 = MatchDataTbl._id "
-                + "JOIN PlayerTbl ON Player2 = MatchDataTbl.opp_id "
-                + "WHERE ROWID % 2 = 0;", null);
+                + "PlayerTbl.PlayerName AS Player1, MatchDataTbl.opp_Name AS Player2, MatchDataTbl.score AS Score "
+                + "FROM MatchDataTbl "
+                + "JOIN PlayerTbl ON MatchDataTbl._id = PlayerTbl._id "
+                + "WHERE MatchDataTbl.ROWID % 2 = 0;", null);
 
         cursor.moveToFirst();
         db.close();
