@@ -37,10 +37,17 @@ public class HistoryActivity extends Activity {
     {
         DBHandler db = new DBHandler(this);
 
-
+        //Get a cursor containing all matches
         Cursor cursor = db.getAllMatches();
 
+        //Find the ListView
+        ListView listView = (ListView) findViewById(R.id.HistoryListView);
 
+        //Generate the cursor adapter
+        HistoryCursorAdapter historyCursorAdapter = new HistoryCursorAdapter(this, cursor);
+
+        //Sets the adapter of the list view to be the cursor adapter
+        listView.setAdapter(historyCursorAdapter);
     }
 
 }
