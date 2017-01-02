@@ -61,9 +61,10 @@ public class HomeScreenActivity extends AppCompatActivity {
                 player2.setTotalSetsPlayed(5);
 
                 String score = Integer.toString(player1.getSetsThisMatch()) + " - " + Integer.toString(player2.getSetsThisMatch());
+                Boolean hold;
 
-                db.saveMatch(1, player1.getPlayerID(), player2.getPlayerName(), score, player1);
-                db.saveMatch(1, player2.getPlayerID(), player1.getPlayerName(), score, player2);
+                hold = db.saveMatch(1, player1.getPlayerID(), player2.getPlayerName(), score, player1);
+                hold = db.saveMatch(1, player2.getPlayerID(), player1.getPlayerName(), score, player2);
 
 
                 player1.setSetsThisMatch(1);
@@ -73,8 +74,8 @@ public class HomeScreenActivity extends AppCompatActivity {
 
                 score = Integer.toString(player1.getSetsThisMatch()) + " - " + Integer.toString(player2.getSetsThisMatch());
 
-                db.saveMatch(2, player1.getPlayerID(), player2.getPlayerName(), score, player1);
-                db.saveMatch(2, player2.getPlayerID(), player1.getPlayerName(), score, player2);
+                hold = db.saveMatch(2, player1.getPlayerID(), player2.getPlayerName(), score, player1);
+                hold = db.saveMatch(2, player2.getPlayerID(), player1.getPlayerName(), score, player2);
 
 
 

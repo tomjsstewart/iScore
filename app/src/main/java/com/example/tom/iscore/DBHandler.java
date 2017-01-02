@@ -126,7 +126,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
-    public void saveMatch(int matchID, int playerID, String opp_Name, String score, PlayerData DataClass)
+    public boolean saveMatch(int matchID, int playerID, String opp_Name, String score, PlayerData DataClass)
     {
         /*
         Function to save any matches that are completed.
@@ -183,8 +183,16 @@ public class DBHandler extends SQLiteOpenHelper{
         data.put("totalDriveVolleyWinners", DataClass.getTotalDriveVolleyWinners());
         data.put("totalHalfVolleyWinners", DataClass.getTotalHalfVolleyWinners());
 
-        db.insert(TABLE_MATCH_DATA, null, data);
+        long success = db.insert(TABLE_MATCH_DATA, null, data);
         db.close();
+        if (success != -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 

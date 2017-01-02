@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,8 @@ public class PlayMatchActivity extends AppCompatActivity {
 
     TextView player1NameTextView;
     TextView player2NameTextView;
+
+    ImageButton saveMatchBtn;
 
     //Lookup for the values of different points
     private String[] pointsValues = {"0", "15", "30", "40", "game", "40", "ad", "game"};
@@ -147,21 +151,46 @@ public class PlayMatchActivity extends AppCompatActivity {
         //Generate matchID
         Integer matchId = db.generateMatchID();
 
+        Log.d("Match ID", String.valueOf(matchId));
+
         //Save player 1
-        db.saveMatch(matchId,
+        Boolean success1 = db.saveMatch(matchId,
                 player1Data.getPlayerID(),
                 player2Data.getPlayerName(),
                 Integer.toString(player1Data.getSetsThisMatch()) + " - " + Integer.toString(player2Data.getSetsThisMatch()),
                 player1Data);
 
         //Save player 2
-        db.saveMatch(matchId,
+        Boolean success2 = db.saveMatch(matchId,
                 player2Data.getPlayerID(),
                 player1Data.getPlayerName(),
                 Integer.toString(player1Data.getSetsThisMatch()) + " - " + Integer.toString(player2Data.getSetsThisMatch()),
                 player2Data);
 
+        //generate a small message to tell user if save worked or not.
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_LONG;
+        CharSequence msg;
 
+        if (success1 && success2)
+        {
+            /*
+            Display a success message if save worked.
+             */
+            msg = "Match saved.";
+            Toast toast = Toast.makeText(context, msg, duration);
+            toast.show(); //Display message
+        }
+        else
+        {
+            /*
+            Display an error message if something went wrong with the save
+             */
+            msg = "Something went wrong.";
+            duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(context, msg, duration);
+            toast.show(); //Display message
+        }
     }
 
 
@@ -471,6 +500,10 @@ public class PlayMatchActivity extends AppCompatActivity {
         player2GamesTextView = (TextView) findViewById(R.id.player2GamesTextView);
         player2SetsTextView = (TextView) findViewById(R.id.player2SetsTextView);
 
+        saveMatchBtn = (ImageButton) findViewById(R.id.saveMatchBtn);
+
+        player1NameTextView.setText(player1Data.getPlayerName());
+        player2NameTextView.setText(player2Data.getPlayerName());
 
         player1NameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -521,6 +554,14 @@ public class PlayMatchActivity extends AppCompatActivity {
                 showPointPopup(player2NameTextView);
 
 
+            }
+        });
+
+        saveMatchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //This contains code to stop more button pushes and saves match data
+                endMatch();
             }
         });
     }
