@@ -150,11 +150,13 @@ public class PlayMatchActivity extends AppCompatActivity {
         //Save player 1
         db.saveMatch(matchId,
                 player1Data.getPlayerID(),
+                player2Data.getPlayerID(),
                 player1Data);
 
         //Save player 2
         db.saveMatch(matchId,
                 player2Data.getPlayerID(),
+                player1Data.getPlayerID(),
                 player2Data);
 
 

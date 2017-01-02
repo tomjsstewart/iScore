@@ -53,10 +53,12 @@ public class DBHandler extends SQLiteOpenHelper{
         String CREATE_MATCH_DATA_TABLE = "CREATE TABLE IF NOT EXISTS MatchDataTbl("
                 + "MatchID INTEGER primary key NOT NULL,"
                 + "_id INTEGER primary key NOT NULL,"
+                + "opp_id INTEGER NOT NULL,"
                 + "TotalPointsWon INTEGER NOT NULL, "
                 + "totalPointsPlayed INTEGER NOT NULL, "
                 + "totalGamesWon INTEGER NOT NULL, "
                 + "totalGamesPlayed INTEGER NOT NULL, "
+                + "totalSetsWon INTEGER NOT NULL"
                 + "totalSetsPlayed INTEGER NOT NULL, "
                 + "firstServePointsPlayed INTEGER NOT NULL, "
                 + "secondServePointsPlayed INTEGER NOT NULL, "
@@ -122,7 +124,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
-    public void saveMatch(int matchID, int playerID, PlayerData DataClass)
+    public void saveMatch(int matchID, int playerID, int oppID,  PlayerData DataClass)
     {
         /*
         Function to save any matches that are completed.
@@ -133,11 +135,13 @@ public class DBHandler extends SQLiteOpenHelper{
 
         data.put("MatchID", matchID);
         data.put("_id", playerID);
+        data.put("opp_id", oppID);
 
         data.put("TotalPointsWon", DataClass.getTotalPointsWon());
         data.put("totalPointsPlayed", DataClass.getTotalPointsPlayed());
         data.put("totalGamesWon", DataClass.getTotalGamesWon());
         data.put("totalGamesPlayed", DataClass.getTotalGamesPlayed());
+        data.put("totalSetsWon", DataClass.getSetsThisMatch());
         data.put("totalSetsPlayed", DataClass.getTotalSetsPlayed());
         data.put("firstServePointsPlayed", DataClass.getFirstServePointsPlayed());
         data.put("secondServePointsPlayed", DataClass.getSecondServePointsPlayed());
@@ -322,6 +326,30 @@ public class DBHandler extends SQLiteOpenHelper{
             db.close();
             return 1;
         }
+    }
+
+    public Cursor getAllMatches()
+    {
+        /*
+        Function to return a cursor containing all matches, which will be used by HistoryActivity
+        to display all of the matches for the user to select one from.
+         */
+
+        //Open connection to the database
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //Query the database for all matches
+        Cursor cursor = db.rawQuery("SELECT "
+                + "_id, "
+                + "opp_id, "
+                + "concat(totalSetsWon, ' - ', (totalSetsPlayed - totalSetsWon)) "
+                + "FROM " + TABLE_MATCH_DATA
+                + " WHERE ROWID > 0 "
+                + "AND ROWID % 2 = 0", null);
+
+        cursor.moveToFirst();
+        db.close();
+        return cursor;
     }
 
 }
