@@ -40,9 +40,9 @@ public class HistoryCursorAdapter extends CursorAdapter{
         String score = cursor.getString(2);
 
         //Populate the TextViews.
-        player1TextView.setText(player1);
-        player2TextView.setText(player2);
-        scoreTextView.setText(score);
+        player1TextView.setText("Player 1: " + player1);
+        player2TextView.setText("Player 2: " + player2);
+        scoreTextView.setText("Score: " + score);
 
     }
 }
