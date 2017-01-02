@@ -55,6 +55,7 @@ public class DBHandler extends SQLiteOpenHelper{
                 + "_id INTEGER NOT NULL, "
                 + "opp_Name VARCHAR(100) NOT NULL, "
                 + "score TEXT NOT NULL, "
+                + "matchDate TEXT NOT NULL, "
                 + "TotalPointsWon INTEGER NOT NULL, "
                 + "totalPointsPlayed INTEGER NOT NULL, "
                 + "totalGamesWon INTEGER NOT NULL, "
@@ -126,7 +127,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
-    public boolean saveMatch(int matchID, int playerID, String opp_Name, String score, PlayerData DataClass)
+    public boolean saveMatch(int matchID, int playerID, String opp_Name, String score, String date, PlayerData DataClass)
     {
         /*
         Function to save any matches that are completed.
@@ -140,6 +141,7 @@ public class DBHandler extends SQLiteOpenHelper{
         data.put("opp_Name", opp_Name);
 
         data.put("score", score);
+        data.put("matchDate", date);
 
         data.put("TotalPointsWon", DataClass.getTotalPointsWon());
         data.put("totalPointsPlayed", DataClass.getTotalPointsPlayed());
@@ -352,7 +354,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
         //Query the database for all matches
         Cursor cursor = db.rawQuery("SELECT "
-                + "PlayerTbl.PlayerName AS _id, MatchDataTbl.opp_Name AS Player2, MatchDataTbl.score AS Score "
+                + "PlayerTbl.PlayerName AS _id, MatchDataTbl.opp_Name AS Player2, MatchDataTbl.score AS Score, MatchDataTbl.matchDate "
                 + "FROM PlayerTbl "
                 + "JOIN MatchDataTbl ON PlayerTbl._id = MatchDataTbl._id "
                 + "WHERE MatchDataTbl.ROWID % 2 = 1;", null);

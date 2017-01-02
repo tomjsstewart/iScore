@@ -26,12 +26,23 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/scoreTextView"
+    android:id="@+id/scoreTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@id/player2TextView"
+    android:text="Score: "
+    android:textColor="#FFFFFF"
+    android:textSize="20sp"
+    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/dateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/player2TextView"
-        android:text="Score: "
+        android:layout_below="@id/scoreTextView"
+        android:text="Date: "
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textAppearance="?android:attr/textAppearanceMedium" />

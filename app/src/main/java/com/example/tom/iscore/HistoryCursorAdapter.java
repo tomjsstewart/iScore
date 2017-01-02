@@ -33,16 +33,19 @@ public class HistoryCursorAdapter extends CursorAdapter{
         TextView player1TextView = (TextView) view.findViewById(R.id.player1TextView);
         TextView player2TextView = (TextView) view.findViewById(R.id.player2TextView);
         TextView scoreTextView = (TextView) view.findViewById(R.id.scoreTextView);
+        TextView dateTextView = (TextView) view.findViewById(R.id.dateTextView);
 
         //Get the properties to display from the cursor
         String player1 = cursor.getString(0);
         String player2 = cursor.getString(1);
         String score = cursor.getString(2);
+        String date = cursor.getString(3);
 
         //Populate the TextViews.
         player1TextView.setText("Player 1: " + player1);
         player2TextView.setText("Player 2: " + player2);
         scoreTextView.setText("Score: " + score);
+        dateTextView.setText("Date: " + date);
 
     }
 }

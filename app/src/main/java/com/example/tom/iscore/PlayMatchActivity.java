@@ -17,6 +17,9 @@ import android.widget.Toast;
 import com.example.tom.iscore.PlayerData;
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 public class PlayMatchActivity extends AppCompatActivity {
 
     //Add all the text views so that I can edit them
@@ -151,6 +154,10 @@ public class PlayMatchActivity extends AppCompatActivity {
         //Generate matchID
         Integer matchId = db.generateMatchID();
 
+        //Get date
+        Date date = new Date();
+        String stringDate = DateFormat.getDateTimeInstance().format(date);
+
         Log.d("Match ID", String.valueOf(matchId));
 
         String score = Integer.toString(player1Data.getSetsThisMatch()) + " - " + Integer.toString(player2Data.getSetsThisMatch());
@@ -164,6 +171,7 @@ public class PlayMatchActivity extends AppCompatActivity {
                 player1Data.getPlayerID(),
                 player2Data.getPlayerName(),
                 score,
+                stringDate,
                 player1Data);
 
         //Save player 2
@@ -171,6 +179,7 @@ public class PlayMatchActivity extends AppCompatActivity {
                 player2Data.getPlayerID(),
                 player1Data.getPlayerName(),
                 score,
+                stringDate,
                 player2Data);
 
         //generate a small message to tell user if save worked or not.
