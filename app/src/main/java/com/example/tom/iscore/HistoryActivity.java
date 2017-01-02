@@ -9,8 +9,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 public class HistoryActivity extends Activity {
+
+    private SimpleCursorAdapter dataAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,11 @@ public class HistoryActivity extends Activity {
 
     private void displayHistoryList()
     {
+        DBHandler db = new DBHandler(this);
+
+
+        Cursor cursor = db.getAllMatches();
+
 
     }
 

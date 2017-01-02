@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/player1TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -13,20 +13,20 @@
         android:text="Player 1: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/player2TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/textView1"
+        android:layout_below="@id/player1TextView"
         android:text="Player 2: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/scoreTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/textView2"
+        android:layout_below="@id/player2TextView"
         android:text="Score: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
