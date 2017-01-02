@@ -11,6 +11,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="Player 1: "
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     <TextView
         android:id="@+id/player2TextView"
@@ -19,6 +21,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/player1TextView"
         android:text="Player 2: "
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -28,6 +32,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/player2TextView"
         android:text="Score: "
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
