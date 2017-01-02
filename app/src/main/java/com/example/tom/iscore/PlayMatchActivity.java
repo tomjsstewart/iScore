@@ -151,12 +151,14 @@ public class PlayMatchActivity extends AppCompatActivity {
         db.saveMatch(matchId,
                 player1Data.getPlayerID(),
                 player2Data.getPlayerID(),
+                Integer.toString(player1Data.getSetsThisMatch()) + " - " + Integer.toString(player2Data.getSetsThisMatch()),
                 player1Data);
 
         //Save player 2
         db.saveMatch(matchId,
                 player2Data.getPlayerID(),
                 player1Data.getPlayerID(),
+                Integer.toString(player1Data.getSetsThisMatch()) + " - " + Integer.toString(player2Data.getSetsThisMatch()),
                 player2Data);
 
 

@@ -21,7 +21,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
     //Table names
     private static final String TABLE_PLAYERS = "Playertbl";
-    private static final String TABLE_MATCH_DATA = "Playertbl";
+    private static final String TABLE_MATCH_DATA = "MatchDataTbl";
 
     //PlayerTbl columns
     public static final String KEY_PLAYER_NAME = "PlayerName";
@@ -51,14 +51,15 @@ public class DBHandler extends SQLiteOpenHelper{
                 + "PlayerHand TEXT NOT NULL);";
 
         String CREATE_MATCH_DATA_TABLE = "CREATE TABLE IF NOT EXISTS MatchDataTbl("
-                + "MatchID INTEGER primary key NOT NULL,"
-                + "_id INTEGER primary key NOT NULL,"
-                + "opp_id INTEGER NOT NULL,"
+                + "MatchID INTEGER NOT NULL, "
+                + "_id INTEGER NOT NULL, "
+                + "opp_id INTEGER NOT NULL, "
+                + "score TEXT NOT NULL, "
                 + "TotalPointsWon INTEGER NOT NULL, "
                 + "totalPointsPlayed INTEGER NOT NULL, "
                 + "totalGamesWon INTEGER NOT NULL, "
                 + "totalGamesPlayed INTEGER NOT NULL, "
-                + "totalSetsWon INTEGER NOT NULL"
+                + "totalSetsWon INTEGER NOT NULL, "
                 + "totalSetsPlayed INTEGER NOT NULL, "
                 + "firstServePointsPlayed INTEGER NOT NULL, "
                 + "secondServePointsPlayed INTEGER NOT NULL, "
@@ -95,6 +96,7 @@ public class DBHandler extends SQLiteOpenHelper{
                 + "totalReturnerServeWinners INTEGER NOT NULL, "
                 + "totalDriveVolleyWinners INTEGER NOT NULL, "
                 + "totalHalfVolleyWinners INTEGER NOT NULL, "
+                + "PRIMARY KEY (MatchID, _id), "
                 + "FOREIGN KEY (_id) REFERENCES PlayerTbl(_id));"; //Defines foreign key and tells which table it came from.
 
         //Create tables
@@ -124,7 +126,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
-    public void saveMatch(int matchID, int playerID, int oppID,  PlayerData DataClass)
+    public void saveMatch(int matchID, int playerID, int oppID, String score, PlayerData DataClass)
     {
         /*
         Function to save any matches that are completed.
@@ -136,6 +138,8 @@ public class DBHandler extends SQLiteOpenHelper{
         data.put("MatchID", matchID);
         data.put("_id", playerID);
         data.put("opp_id", oppID);
+
+        data.put("score", score);
 
         data.put("TotalPointsWon", DataClass.getTotalPointsWon());
         data.put("totalPointsPlayed", DataClass.getTotalPointsPlayed());
@@ -342,10 +346,8 @@ public class DBHandler extends SQLiteOpenHelper{
         Cursor cursor = db.rawQuery("SELECT "
                 + "_id, "
                 + "opp_id, "
-                + "concat(totalSetsWon, ' - ', (totalSetsPlayed - totalSetsWon)) "
-                + "FROM " + TABLE_MATCH_DATA
-                + " WHERE ROWID > 0 "
-                + "AND ROWID % 2 = 0", null);
+                + "score "
+                + "FROM MatchDataTbl WHERE ROWID % 2 = 0;", null);
 
         cursor.moveToFirst();
         db.close();
