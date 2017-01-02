@@ -74,6 +74,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.tom.iscore.HomeScreenActivity" />
         </activity>
+        <activity
+            android:name=".ViewMatchActivity"
+            android:label="@string/title_activity_view_match"
+            android:parentActivityName=".HistoryActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tom.iscore.HistoryActivity" />
+        </activity>
     </application>
 
 </manifest>
