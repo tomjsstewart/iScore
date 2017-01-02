@@ -153,18 +153,24 @@ public class PlayMatchActivity extends AppCompatActivity {
 
         Log.d("Match ID", String.valueOf(matchId));
 
+        String score = Integer.toString(player1Data.getSetsThisMatch()) + " - " + Integer.toString(player2Data.getSetsThisMatch());
+        if (player1Data.getSetsThisMatch() == 0 && player2Data.getSetsThisMatch() == 0)
+        {
+            score += " (" + Integer.toString(player1Data.getGamesThisSet()) + " - " + Integer.toString(player2Data.getGamesThisSet()) +")";
+        }
+
         //Save player 1
         Boolean success1 = db.saveMatch(matchId,
                 player1Data.getPlayerID(),
                 player2Data.getPlayerName(),
-                Integer.toString(player1Data.getSetsThisMatch()) + " - " + Integer.toString(player2Data.getSetsThisMatch()),
+                score,
                 player1Data);
 
         //Save player 2
         Boolean success2 = db.saveMatch(matchId,
                 player2Data.getPlayerID(),
                 player1Data.getPlayerName(),
-                Integer.toString(player1Data.getSetsThisMatch()) + " - " + Integer.toString(player2Data.getSetsThisMatch()),
+                score,
                 player2Data);
 
         //generate a small message to tell user if save worked or not.
