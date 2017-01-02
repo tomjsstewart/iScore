@@ -46,9 +46,9 @@ public class HomeScreenActivity extends AppCompatActivity {
         historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.deleteForTest();
+                /*db.deleteForTest();
                 db.addPlayer("Tom Stewart", 17, "Male", "R");
-                db.addPlayer("Ben Stewart", 12, "Male", "R");
+                db.addPlayer("Ben Stewart", 12, "Male", "R");*/
 
                 PlayerData player1 = new PlayerData();
                 PlayerData player2 = new PlayerData();
