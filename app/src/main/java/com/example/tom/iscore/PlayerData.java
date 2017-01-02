@@ -707,4 +707,14 @@ public class PlayerData {
     public int getTotalPointsWon() {
         return totalPointsWon;
     }
+
+
+    public void setSetsThisMatch(int sets)
+    {
+        this.setsThisMatch = sets;
+    }
+    public void setTotalSetsPlayed(int setsPlayed)
+    {
+        this.totalSetsPlayed = setsPlayed;
+    }
 }
