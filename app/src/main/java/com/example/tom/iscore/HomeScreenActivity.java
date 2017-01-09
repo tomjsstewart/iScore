@@ -22,8 +22,8 @@ public class HomeScreenActivity extends AppCompatActivity {
         final Button historyBtn = (Button) findViewById(R.id.HistoryBtn);
 
         final DBHandler db = new DBHandler(this);
-        //db.deleteForTest();
         db.deleteForTest();
+        /*db.deleteForTest();
         db.addPlayer("Tom Stewart", 17, "Male", "R");
         db.addPlayer("Ben Stewart", 12, "Male", "R");
 
@@ -56,7 +56,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         score = Integer.toString(player1.getSetsThisMatch()) + " - " + Integer.toString(player2.getSetsThisMatch());
 
         hold = db.saveMatch(2, player1.getPlayerID(), player2.getPlayerName(), score, stringDate, player1);
-        hold = db.saveMatch(2, player2.getPlayerID(), player1.getPlayerName(), score, stringDate, player2);
+        hold = db.saveMatch(2, player2.getPlayerID(), player1.getPlayerName(), score, stringDate, player2);*/
 
         startMatchBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
