@@ -366,5 +366,87 @@ public class DBHandler extends SQLiteOpenHelper{
         return cursor;
     }
 
+    public PlayerData setPlayerData(Cursor cursor)
+    {
+        PlayerData player = new PlayerData();
+        //Set the relevant attributes within the PlayerData instance
+        //Columns are zero-indexed and follow the order that the database was declared
+        player.setPlayerID(Integer.parseInt(cursor.getString(0)));
+
+        player.setTotalPointsWon(Integer.parseInt(cursor.getString(4)));
+        player.setTotalPointsPlayed(Integer.parseInt(cursor.getString(5)));
+        player.setTotalGamesWon(Integer.parseInt(cursor.getString(6)));
+        player.setTotalGamesPlayed(Integer.parseInt(cursor.getString(7)));
+        player.setSetsThisMatch(Integer.parseInt(cursor.getString(8)));
+        player.setTotalSetsPlayed(Integer.parseInt(cursor.getString(9)));
+
+        player.setFirstServePointsPlayed(Integer.parseInt(cursor.getString(10)));
+        player.setSecondServePointsPlayed(Integer.parseInt(cursor.getString(11)));
+        player.setFirstServePointsWon(Integer.parseInt(cursor.getString(12)));
+        player.setSecondServePointsWon(Integer.parseInt(cursor.getString(13)));
+
+        player.setReceivingFirstServePointsPlayed(Integer.parseInt(cursor.getString(14)));
+        player.setReceivingFirstServePointsWon(Integer.parseInt(cursor.getString(15)));
+        player.setReceivingSecondServePointsPlayed(Integer.parseInt(cursor.getString(16)));
+        player.setReceivingSecondServePointsWon(Integer.parseInt(cursor.getString(17)));
+
+        player.setBreakPointChances(Integer.parseInt(cursor.getString(18)));
+        player.setBreakPointsConverted(Integer.parseInt(cursor.getString(19)));
+        player.setBreakPointsAgainst(Integer.parseInt(cursor.getString(20)));
+        player.setBreakPointsSaved(Integer.parseInt(cursor.getString(21)));
+
+        player.setTieBreaksPlayed(Integer.parseInt(cursor.getString(22)));
+        player.setTieBreaksWon(Integer.parseInt(cursor.getString(23)));
+        player.setTieBreakPointsWon(Integer.parseInt(cursor.getString(24)));
+        player.setTieBreakPointsPlayed(Integer.parseInt(cursor.getString(25)));
+
+        player.setDeucePointsWon(Integer.parseInt(cursor.getString(26)));
+        player.setDeucePointsPlayed(Integer.parseInt(cursor.getString(27)));
+        player.setAdvantagePointsWon(Integer.parseInt(cursor.getString(28)));
+        player.setAdvantagePointsPlayed(Integer.parseInt(cursor.getString(29)));
+
+        player.setTotalAces(Integer.parseInt(cursor.getString(30)));
+        player.setTotalFaults(Integer.parseInt(cursor.getString(31)));
+        player.setTotalDoubleFaults(Integer.parseInt(cursor.getString(32)));
+        player.setTotalUnforcedErrors(Integer.parseInt(cursor.getString(33)));
+        player.setTotalForcedErrors(Integer.parseInt(cursor.getString(34)));
+
+        player.setTotalWinners(Integer.parseInt(cursor.getString(35)));
+        player.setTotalForehandWinners(Integer.parseInt(cursor.getString(36)));
+        player.setTotalBackhandWinners(Integer.parseInt(cursor.getString(37)));
+        player.setTotalVolleyWinners(Integer.parseInt(cursor.getString(38)));
+        player.setTotalSmashWinners(Integer.parseInt(cursor.getString(39)));
+        player.setTotalDropShotWinners(Integer.parseInt(cursor.getString(40)));
+        player.setTotalLobWinners(Integer.parseInt(cursor.getString(41)));
+        player.setTotalReturnerServeWinners(Integer.parseInt(cursor.getString(42)));
+        player.setTotalDriveVolleyWinners(Integer.parseInt(cursor.getString(43)));
+        player.setTotalHalfVolleyWinners(Integer.parseInt(cursor.getString(44)));
+
+        return player;
+    }
+
+    public List<PlayerData> getMatchData(int matchID) {
+
+
+        //Open connection to database
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //List to hold the player data instances for both players
+        List<PlayerData> players = new ArrayList<PlayerData>();
+
+        //Select the data
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_MATCH_DATA + " WHERE MatchID = " + matchID + ";", null);
+
+
+        //Checks there is data
+        if (cursor.moveToFirst()) {
+            players.add(setPlayerData(cursor));
+            cursor.moveToNext();
+            players.add(setPlayerData(cursor));
+        }
+
+        db.close();
+        return players;
+    }
 }
 

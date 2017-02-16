@@ -717,4 +717,164 @@ public class PlayerData {
     {
         this.totalSetsPlayed = setsPlayed;
     }
+
+    public void setTotalPointsWon(int totalPointsWon) {
+        this.totalPointsWon = totalPointsWon;
+    }
+
+    public void setTotalPointsPlayed(int totalPointsPlayed) {
+        this.totalPointsPlayed = totalPointsPlayed;
+    }
+
+    public void setTotalGamesWon(int totalGamesWon) {
+        this.totalGamesWon = totalGamesWon;
+    }
+
+    public void setTotalGamesPlayed(int totalGamesPlayed) {
+        this.totalGamesPlayed = totalGamesPlayed;
+    }
+
+    public void setFirstServePointsPlayed(int firstServePointsPlayed) {
+        this.firstServePointsPlayed = firstServePointsPlayed;
+    }
+
+    public void setFirstServePointsWon(int firstServePointsWon) {
+        this.firstServePointsWon = firstServePointsWon;
+    }
+
+    public void setSecondServePointsPlayed(int secondServePointsPlayed) {
+        this.secondServePointsPlayed = secondServePointsPlayed;
+    }
+
+    public void setSecondServePointsWon(int secondServePointsWon) {
+        this.secondServePointsWon = secondServePointsWon;
+    }
+
+    public void setReceivingFirstServePointsPlayed(int receivingFirstServePointsPlayed) {
+        this.receivingFirstServePointsPlayed = receivingFirstServePointsPlayed;
+    }
+
+    public void setReceivingFirstServePointsWon(int receivingFirstServePointsWon) {
+        this.receivingFirstServePointsWon = receivingFirstServePointsWon;
+    }
+
+    public void setReceivingSecondServePointsPlayed(int receivingSecondServePointsPlayed) {
+        this.receivingSecondServePointsPlayed = receivingSecondServePointsPlayed;
+    }
+
+    public void setReceivingSecondServePointsWon(int receivingSecondServePointsWon) {
+        this.receivingSecondServePointsWon = receivingSecondServePointsWon;
+    }
+
+    public void setBreakPointChances(int breakPointChances) {
+        this.breakPointChances = breakPointChances;
+    }
+
+    public void setBreakPointsConverted(int breakPointsConverted) {
+        this.breakPointsConverted = breakPointsConverted;
+    }
+
+    public void setBreakPointsAgainst(int breakPointsAgainst) {
+        this.breakPointsAgainst = breakPointsAgainst;
+    }
+
+    public void setBreakPointsSaved(int breakPointsSaved) {
+        this.breakPointsSaved = breakPointsSaved;
+    }
+
+    public void setCurrentTieBreakpoints(int currentTieBreakpoints) {
+        this.currentTieBreakpoints = currentTieBreakpoints;
+    }
+
+    public void setTieBreaksPlayed(int tieBreaksPlayed) {
+        this.tieBreaksPlayed = tieBreaksPlayed;
+    }
+
+    public void setTieBreaksWon(int tieBreaksWon) {
+        this.tieBreaksWon = tieBreaksWon;
+    }
+
+    public void setTieBreakPointsPlayed(int tieBreakPointsPlayed) {
+        this.tieBreakPointsPlayed = tieBreakPointsPlayed;
+    }
+
+    public void setTieBreakPointsWon(int tieBreakPointsWon) {
+        this.tieBreakPointsWon = tieBreakPointsWon;
+    }
+
+    public void setDeucePointsPlayed(int deucePointsPlayed) {
+        this.deucePointsPlayed = deucePointsPlayed;
+    }
+
+    public void setDeucePointsWon(int deucePointsWon) {
+        this.deucePointsWon = deucePointsWon;
+    }
+
+    public void setAdvantagePointsPlayed(int advantagePointsPlayed) {
+        this.advantagePointsPlayed = advantagePointsPlayed;
+    }
+
+    public void setAdvantagePointsWon(int advantagePointsWon) {
+        this.advantagePointsWon = advantagePointsWon;
+    }
+
+    public void setTotalAces(int totalAces) {
+        this.totalAces = totalAces;
+    }
+
+    public void setTotalFaults(int totalFaults) {
+        this.totalFaults = totalFaults;
+    }
+
+    public void setTotalDoubleFaults(int totalDoubleFaults) {
+        this.totalDoubleFaults = totalDoubleFaults;
+    }
+
+    public void setTotalUnforcedErrors(int totalUnforcedErrors) {
+        this.totalUnforcedErrors = totalUnforcedErrors;
+    }
+
+    public void setTotalForcedErrors(int totalForcedErrors) {
+        this.totalForcedErrors = totalForcedErrors;
+    }
+
+    public void setTotalWinners(int totalWinners) {
+        this.totalWinners = totalWinners;
+    }
+
+    public void setTotalForehandWinners(int totalForehandWinners) {
+        this.totalForehandWinners = totalForehandWinners;
+    }
+
+    public void setTotalBackhandWinners(int totalBackhandWinners) {
+        this.totalBackhandWinners = totalBackhandWinners;
+    }
+
+    public void setTotalVolleyWinners(int totalVolleyWinners) {
+        this.totalVolleyWinners = totalVolleyWinners;
+    }
+
+    public void setTotalSmashWinners(int totalSmashWinners) {
+        this.totalSmashWinners = totalSmashWinners;
+    }
+
+    public void setTotalDropShotWinners(int totalDropShotWinners) {
+        this.totalDropShotWinners = totalDropShotWinners;
+    }
+
+    public void setTotalDriveVolleyWinners(int totalDriveVolleyWinners) {
+        this.totalDriveVolleyWinners = totalDriveVolleyWinners;
+    }
+
+    public void setTotalHalfVolleyWinners(int totalHalfVolleyWinners) {
+        this.totalHalfVolleyWinners = totalHalfVolleyWinners;
+    }
+
+    public void setTotalLobWinners(int totalLobWinners) {
+        this.totalLobWinners = totalLobWinners;
+    }
+
+    public void setTotalReturnerServeWinners(int totalReturnerServeWinners) {
+        this.totalReturnerServeWinners = totalReturnerServeWinners;
+    }
 }
