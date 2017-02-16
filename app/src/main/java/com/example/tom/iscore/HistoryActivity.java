@@ -59,6 +59,7 @@ public class HistoryActivity extends Activity {
                 Intent intent = new Intent(HistoryActivity.this, ViewMatchActivity.class);
 
                 //Is this correct?
+                //pass in the Match ID
                 intent.putExtra("MatchID", (position/2) + 1);
 
                 startActivity(intent);

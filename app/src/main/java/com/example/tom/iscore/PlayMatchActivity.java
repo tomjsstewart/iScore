@@ -154,13 +154,15 @@ public class PlayMatchActivity extends AppCompatActivity {
         //Generate matchID
         Integer matchId = db.generateMatchID();
 
-        //Get date
+        //Get date of match
         Date date = new Date();
         String stringDate = DateFormat.getDateTimeInstance().format(date);
 
         Log.d("Match ID", String.valueOf(matchId));
 
+        //Create a string of the score to save to the database
         String score = Integer.toString(player1Data.getSetsThisMatch()) + " - " + Integer.toString(player2Data.getSetsThisMatch());
+        //If there hasn't been a full set played include the number of games won by each player
         if (player1Data.getSetsThisMatch() == 0 && player2Data.getSetsThisMatch() == 0)
         {
             score += " (" + Integer.toString(player1Data.getGamesThisSet()) + " - " + Integer.toString(player2Data.getGamesThisSet()) +")";
