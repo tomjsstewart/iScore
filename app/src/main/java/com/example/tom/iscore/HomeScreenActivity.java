@@ -22,6 +22,8 @@ public class HomeScreenActivity extends AppCompatActivity {
         final Button historyBtn = (Button) findViewById(R.id.HistoryBtn);
 
         final DBHandler db = new DBHandler(this);
+
+        db.viewAll();
         //db.deleteForTest();
         /*db.deleteForTest();
         db.addPlayer("Tom Stewart", 17, "Male", "R");

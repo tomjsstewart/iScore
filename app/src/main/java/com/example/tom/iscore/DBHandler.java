@@ -4,8 +4,10 @@ package com.example.tom.iscore;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.sql.SQLData;
 import java.util.ArrayList;
@@ -368,6 +370,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
     public PlayerData setPlayerData(Cursor cursor)
     {
+        Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
         PlayerData player = new PlayerData();
         //Set the relevant attributes within the PlayerData instance
         //Columns are zero-indexed and follow the order that the database was declared
@@ -448,5 +451,21 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
         return players;
     }
-}
 
+
+public void viewAll() {
+    SQLiteDatabase db = this.getReadableDatabase();
+
+
+    Cursor cursor1 = db.rawQuery("SELECT * FROM " + TABLE_MATCH_DATA + ";", null);
+    Cursor cursor2 = db.rawQuery("SELECT * FROM " + TABLE_PLAYERS + ";", null);
+
+    cursor1.moveToFirst();
+    cursor2.moveToFirst();
+
+
+    Log.v("Cursor Players Table", DatabaseUtils.dumpCursorToString(cursor2));
+    Log.v("Cursor Match Data Tbl", DatabaseUtils.dumpCursorToString(cursor1));
+    }
+
+}
