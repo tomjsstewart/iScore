@@ -1,6 +1,9 @@
 package com.example.tom.iscore;
 
 
+import android.util.Log;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by Tom on 13/10/2016.
@@ -876,5 +879,27 @@ public class PlayerData {
 
     public void setTotalReturnerServeWinners(int totalReturnerServeWinners) {
         this.totalReturnerServeWinners = totalReturnerServeWinners;
+    }
+
+
+    public String dataToString()
+    {
+        Field[] fields = this.getClass().getDeclaredFields();
+        String newLine = System.getProperty("line.separator");
+        String string = "";
+
+        for ( Field field: fields )
+        {
+            try
+            {
+                string += field.getName() ;
+                string += ": " + field.get(this);
+                string += newLine;
+            }
+            catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    return string;
     }
 }
