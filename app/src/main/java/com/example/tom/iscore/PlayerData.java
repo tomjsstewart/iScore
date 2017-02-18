@@ -526,19 +526,16 @@ public class PlayerData {
     public void recordDoubleFault()
     {
         this.totalDoubleFaults += 1;
-        losePoint();
     }
 
     public void recordUnforcedError()
     {
         this.totalUnforcedErrors += 1;
-        scorePoint();
     }
 
     public void recordForcedError()
     {
         this.totalForcedErrors += 1;
-        losePoint();
     }
 
 

@@ -33,7 +33,7 @@ public class PlayMatchActivity extends AppCompatActivity {
     TextView player1NameTextView;
     TextView player2NameTextView;
 
-    ImageButton saveMatchBtn;
+//    ImageButton saveMatchBtn;
 
     //Lookup for the values of different points
     private String[] pointsValues = {"0", "15", "30", "40", "game", "40", "ad", "game"};
@@ -129,7 +129,7 @@ public class PlayMatchActivity extends AppCompatActivity {
     public void player2LosesPoint()
     {
          /*
-        Function to call required code when player 1 loses a point
+        Function to call required code when player 2 loses a point
          */
         player2Data.setOpponentsPointsThisGame(
                 player1Data.getPointsThisGame());
@@ -265,12 +265,14 @@ public class PlayMatchActivity extends AppCompatActivity {
                         if (playerClicked == 1)
                         {
                             player1Data.recordDoubleFault();
-                            player2LosesPoint();
+                            player2Data.scorePoint();
+                            player1LosesPoint();
                         }
                         else
                         {
                             player2Data.recordDoubleFault();
-                            player1LosesPoint();
+                            player1Data.scorePoint();
+                            player2LosesPoint();
                         }
                         return true;
 
@@ -278,12 +280,14 @@ public class PlayMatchActivity extends AppCompatActivity {
                         if (playerClicked == 1)
                         {
                             player1Data.recordUnforcedError();
-                            player2LosesPoint();
+                            player2Data.scorePoint();
+                            player1LosesPoint();
                         }
                         else
                         {
                             player2Data.recordUnforcedError();
-                            player1LosesPoint();
+                            player1Data.scorePoint();
+                            player2LosesPoint();
                         }
                         return true;
 
@@ -291,12 +295,14 @@ public class PlayMatchActivity extends AppCompatActivity {
                         if (playerClicked == 1)
                         {
                             player1Data.recordForcedError();
-                            player2LosesPoint();
+                            player2Data.scorePoint();
+                            player1LosesPoint();
                         }
                         else
                         {
                             player2Data.recordForcedError();
-                            player1LosesPoint();
+                            player1Data.scorePoint();
+                            player2LosesPoint();
                         }
                         return true;
 
@@ -517,7 +523,7 @@ public class PlayMatchActivity extends AppCompatActivity {
         player2GamesTextView = (TextView) findViewById(R.id.player2GamesTextView);
         player2SetsTextView = (TextView) findViewById(R.id.player2SetsTextView);
 
-        saveMatchBtn = (ImageButton) findViewById(R.id.saveMatchBtn);
+//        saveMatchBtn = (ImageButton) findViewById(R.id.saveMatchBtn);
 
         player1NameTextView.setText(player1Data.getPlayerName());
         player2NameTextView.setText(player2Data.getPlayerName());
@@ -574,12 +580,12 @@ public class PlayMatchActivity extends AppCompatActivity {
             }
         });
 
-        saveMatchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //This contains code to stop more button pushes and saves match data
-                endMatch();
-            }
-        });
+//        saveMatchBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //This contains code to stop more button pushes and saves match data
+//                endMatch();
+//            }
+//        });
     }
 }

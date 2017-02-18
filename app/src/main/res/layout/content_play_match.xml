@@ -156,7 +156,7 @@
         android:paddingBottom="5dp"
         android:id="@+id/player2PointsTextView" />
 
-    <ImageButton
+    <!--<ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_menu_save"
@@ -165,5 +165,5 @@
         android:layout_toStartOf="@+id/textView"
         android:id="@+id/saveMatchBtn" />
 
-
+    -->
 </RelativeLayout>
