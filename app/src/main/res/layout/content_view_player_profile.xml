@@ -32,7 +32,7 @@
         android:text="Gender: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView12"
+        android:id="@+id/GenderLabel"
         android:textSize="30sp"
         android:textColor="#FFFFFF"
         android:layout_alignBaseline="@+id/ShowPlayerGender"
@@ -44,25 +44,25 @@
         android:text="Age: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView11"
+        android:id="@+id/AgeLabel"
         android:textSize="30sp"
         android:textColor="#FFFFFF"
         android:layout_alignBaseline="@+id/ShowPlayerAge"
         android:layout_alignBottom="@+id/ShowPlayerAge"
-        android:layout_alignRight="@+id/textView12"
-        android:layout_alignEnd="@+id/textView12" />
+        android:layout_alignRight="@+id/GenderLabel"
+        android:layout_alignEnd="@+id/GenderLabel" />
 
     <TextView
         android:text="Hand: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView13"
+        android:id="@+id/HandLabel"
         android:textSize="30sp"
         android:textColor="#FFFFFF"
         android:layout_alignBaseline="@+id/ShowPlayerHand"
         android:layout_alignBottom="@+id/ShowPlayerHand"
-        android:layout_alignRight="@+id/textView12"
-        android:layout_alignEnd="@+id/textView12" />
+        android:layout_alignRight="@+id/GenderLabel"
+        android:layout_alignEnd="@+id/GenderLabel" />
 
     <TextView
         android:text="PlayerAge"
@@ -84,8 +84,8 @@
         android:textColor="#FFFFFF"
         android:layout_marginTop="87dp"
         android:layout_below="@+id/ShowPlayerAge"
-        android:layout_toRightOf="@+id/textView12"
-        android:layout_toEndOf="@+id/textView12" />
+        android:layout_toRightOf="@+id/GenderLabel"
+        android:layout_toEndOf="@+id/GenderLabel" />
 
     <TextView
         android:text="Player Hand"
@@ -95,7 +95,7 @@
         android:textSize="30sp"
         android:textColor="#FFFFFF"
         android:layout_marginTop="67dp"
-        android:layout_below="@+id/textView12"
-        android:layout_toRightOf="@+id/textView13"
-        android:layout_toEndOf="@+id/textView13" />
+        android:layout_below="@+id/GenderLabel"
+        android:layout_toRightOf="@+id/HandLabel"
+        android:layout_toEndOf="@+id/HandLabel" />
 </RelativeLayout>
