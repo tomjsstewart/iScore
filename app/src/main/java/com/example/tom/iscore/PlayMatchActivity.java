@@ -9,13 +9,10 @@ import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tom.iscore.PlayerData;
-import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -33,7 +30,7 @@ public class PlayMatchActivity extends AppCompatActivity {
     TextView player1NameTextView;
     TextView player2NameTextView;
 
-//    ImageButton saveMatchBtn;
+    ImageButton saveMatchBtn;
 
     //Lookup for the values of different points
     private String[] pointsValues = {"0", "15", "30", "40", "game", "40", "ad", "game"};
@@ -523,7 +520,7 @@ public class PlayMatchActivity extends AppCompatActivity {
         player2GamesTextView = (TextView) findViewById(R.id.player2GamesTextView);
         player2SetsTextView = (TextView) findViewById(R.id.player2SetsTextView);
 
-//        saveMatchBtn = (ImageButton) findViewById(R.id.saveMatchBtn);
+        saveMatchBtn = (ImageButton) findViewById(R.id.saveMatchBtn);
 
         player1NameTextView.setText(player1Data.getPlayerName());
         player2NameTextView.setText(player2Data.getPlayerName());
@@ -580,12 +577,12 @@ public class PlayMatchActivity extends AppCompatActivity {
             }
         });
 
-//        saveMatchBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //This contains code to stop more button pushes and saves match data
-//                endMatch();
-//            }
-//        });
+        saveMatchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //This contains code to stop more button pushes and saves match data
+                endMatch();
+            }
+        });
     }
 }
