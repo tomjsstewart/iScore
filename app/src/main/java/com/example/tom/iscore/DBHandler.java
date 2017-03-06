@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.sql.SQLData;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db)
     {
         /*
-        Function to create the tables to store player infomation and the match data generated
+        Function to create the tables to store player information and the match data generated
          */
         String CREATE_PLAYER_TABLE = "CREATE TABLE PlayerTbl ("
                 + "_id INTEGER primary key AUTOINCREMENT, "
@@ -332,6 +331,7 @@ public class DBHandler extends SQLiteOpenHelper{
             //get the previous match ID, add one to get new match id, close database connection and
             //return match ID
             Integer matchId = (Integer.parseInt(cursor.getString(0)) + 1);
+            cursor.close();
             db.close();
             return matchId;
         }
@@ -339,6 +339,7 @@ public class DBHandler extends SQLiteOpenHelper{
         {
             //There are no previous matches so return 1 as a first match, close database connection
             //and return the match ID
+            cursor.close();
             db.close();
             return 1;
         }
