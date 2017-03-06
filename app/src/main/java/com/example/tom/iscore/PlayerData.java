@@ -1,8 +1,6 @@
 package com.example.tom.iscore;
 
 
-import android.util.Log;
-
 import java.lang.reflect.Field;
 
 /**
@@ -335,7 +333,7 @@ public class PlayerData {
         this.totalPointsPlayed += 1;
 
         //if the score is deuce
-        if(isDeuce() || this.opponentsPointsThisGame == 5)
+        if(isDeuce())
         {
             this.pointsThisGame = 5;
             return;
@@ -494,6 +492,7 @@ public class PlayerData {
     public void scoreSmashWinner()
     {
         this.totalSmashWinners += 1;
+        this.totalWinners += 1;
         scorePoint();
     }
 
