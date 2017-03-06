@@ -3,12 +3,8 @@ package com.example.tom.iscore;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
-import java.text.DateFormat;
-import java.util.Date;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
@@ -24,7 +20,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         final DBHandler db = new DBHandler(this);
 
         db.viewAll();
-        //db.deleteForTest();
+        db.deleteForTest();
         /*db.deleteForTest();
         db.addPlayer("Tom Stewart", 17, "Male", "R");
         db.addPlayer("Ben Stewart", 12, "Male", "R");
