@@ -333,7 +333,7 @@ public class PlayerData {
         this.totalPointsPlayed += 1;
 
         //if the score is deuce
-        if(isDeuce())
+        if(isDeuce() || this.opponentsPointsThisGame == 5)
         {
             this.pointsThisGame = 5;
             return;
