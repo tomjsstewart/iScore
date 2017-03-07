@@ -6,13 +6,18 @@
     android:layout_height="match_parent"
     android:background="#006699">
 
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/addPlayerBtn"
+    <TextView
+        android:text="Select Player"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView9"
+        android:layout_above="@+id/listView1"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF" />
 
     <ImageButton
         android:layout_width="69dp"
@@ -24,5 +29,16 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         />
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/addPlayerBtn" />
+
+
+
 
 </RelativeLayout>
