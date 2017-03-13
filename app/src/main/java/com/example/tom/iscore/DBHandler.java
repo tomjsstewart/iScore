@@ -104,7 +104,7 @@ public class DBHandler extends SQLiteOpenHelper{
         //Create tables
         db.execSQL(CREATE_PLAYER_TABLE);
         db.execSQL(CREATE_MATCH_DATA_TABLE);
-        db.close();
+        //db.close();
 
     }
 
@@ -187,7 +187,7 @@ public class DBHandler extends SQLiteOpenHelper{
         data.put("totalHalfVolleyWinners", DataClass.getTotalHalfVolleyWinners());
 
         long success = db.insert(TABLE_MATCH_DATA, null, data);
-        db.close();
+        //db.close();
         if (success != -1)
         {
             return true;
@@ -221,7 +221,7 @@ public class DBHandler extends SQLiteOpenHelper{
         info.put(KEY_PLAYER_HAND, playerHand);
 
         long success = db.insert(TABLE_PLAYERS, null, info); //Insert row
-        db.close(); //Close database
+        //db.close(); //Close database
         if (success != -1)
         {
             return true;
@@ -251,7 +251,7 @@ public class DBHandler extends SQLiteOpenHelper{
             //If there is data make sure the cursor points to the first item, so no one is missed off
             mCursor.moveToFirst();
         }
-        db.close();
+        //db.close();
         return mCursor;
     }
 
@@ -271,7 +271,7 @@ public class DBHandler extends SQLiteOpenHelper{
         {
             mCursor.moveToFirst();
         }
-        db.close();
+        //db.close();
         return mCursor;
     }
 
@@ -305,7 +305,7 @@ public class DBHandler extends SQLiteOpenHelper{
         }
 
         cursor.close();
-        db.close();
+        //db.close();
         return player;
     }
 
@@ -332,7 +332,7 @@ public class DBHandler extends SQLiteOpenHelper{
             //return match ID
             Integer matchId = (Integer.parseInt(cursor.getString(0)) + 1);
             cursor.close();
-            db.close();
+            //db.close();
             return matchId;
         }
         else
@@ -340,7 +340,7 @@ public class DBHandler extends SQLiteOpenHelper{
             //There are no previous matches so return 1 as a first match, close database connection
             //and return the match ID
             cursor.close();
-            db.close();
+            //db.close();
             return 1;
         }
     }
@@ -365,7 +365,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
 
         cursor.moveToFirst();
-        db.close();
+        //db.close();
         return cursor;
     }
 
@@ -449,7 +449,7 @@ public class DBHandler extends SQLiteOpenHelper{
             players.add(setPlayerData(cursor));
         }
 
-        db.close();
+        //db.close();
         return players;
     }
 
