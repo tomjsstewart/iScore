@@ -19,8 +19,8 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         final DBHandler db = new DBHandler(this);
 
-        db.viewAll();
-        db.deleteForTest();
+        //db.viewAll();
+        //db.deleteForTest();
         /*db.deleteForTest();
         db.addPlayer("Tom Stewart", 17, "Male", "R");
         db.addPlayer("Ben Stewart", 12, "Male", "R");
