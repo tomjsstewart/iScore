@@ -65,7 +65,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.tom.iscore.HomeScreenActivity" />
         </activity>
-        <activity android:name=".AddPlayerTwoToMatchActivity" />
+        <activity android:name=".AddPlayerTwoToMatchActivity"
+            android:label="@string/title_activity_add_player_two_to_match"
+            android:parentActivityName=".HomeScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.tom.iscore.HomeScreenActivity"/>
+        </activity>
         <activity
             android:name=".HistoryActivity"
             android:label="@string/title_activity_history"
