@@ -41,18 +41,6 @@ public class AddPlayerOneToMatchActivity extends Activity {
         //Get a cursor containing all of the players names
         Cursor cursor = db.getAllPlayersNamesCursor();
 
-        Log.d("Show cursor", cursor.toString());
-
-        if (cursor == null)
-        {
-            Log.d("displayListView", "Cursor is null");
-        }
-
-        if (cursor.getCount() == 0)
-        {
-            Log.d("displayListView", "no players in database");
-        }
-
         //Passed into the SimpleCursorAdapter
         String[] player_names = new String[] {
                 DBHandler.KEY_PLAYER_NAME,

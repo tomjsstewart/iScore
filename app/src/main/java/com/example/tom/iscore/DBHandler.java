@@ -380,7 +380,6 @@ public class DBHandler extends SQLiteOpenHelper{
 
     public PlayerData setPlayerData(Cursor cursor)
     {
-        Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
         //Create a new instance of PlayerData
         PlayerData player = new PlayerData();
         //Set the relevant attributes within the PlayerData instance
@@ -475,9 +474,6 @@ public void viewAll()
 
         cursor1.moveToFirst();
         cursor2.moveToFirst();
-
-        Log.v("Cursor Players Table", DatabaseUtils.dumpCursorToString(cursor2));
-        Log.v("Cursor Match Data Tbl", DatabaseUtils.dumpCursorToString(cursor1));
     }
 
 }

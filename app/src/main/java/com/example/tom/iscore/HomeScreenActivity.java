@@ -21,7 +21,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         final DBHandler db = new DBHandler(this);
 
         //db.viewAll();
-        //db.deleteForTest();
+        db.deleteForTest();
         /*db.deleteForTest();
         db.addPlayer("Tom Stewart", 17, "Male", "R");
         db.addPlayer("Ben Stewart", 12, "Male", "R");
@@ -31,7 +31,7 @@ public class HomeScreenActivity extends AppCompatActivity {
 
         Date date = new Date();
         String stringDate = DateFormat.getDateTimeInstance().format(date);
-        Log.d("Date", stringDate);
+
 
         player1 = db.getPlayerByID(1);
         player2 = db.getPlayerByID(2);

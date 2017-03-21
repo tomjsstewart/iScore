@@ -61,18 +61,6 @@ public class SelectPlayerActivity extends Activity {
          */
         Cursor cursor = db.getAllPlayersNamesCursor();
 
-        Log.d("Show cursor", cursor.toString());
-
-        if (cursor == null)
-        {
-            Log.d("displayListView", "Cursor is null");
-        }
-
-        if (cursor.getCount() == 0)
-        {
-            Log.d("displayListView", "no players in database");
-        }
-
         //Points to the column from the database to display on the screen
         String[] player_names = new String[] {
                 DBHandler.KEY_PLAYER_NAME,
@@ -95,8 +83,6 @@ public class SelectPlayerActivity extends Activity {
         //Find the ListView
         ListView listView = (ListView) findViewById(R.id.listView1);
 
-        Log.d("List view", listView.toString());
-
         //Sets the adapter of the list view to be the cursor adapter
         listView.setAdapter(dataAdapter);
 
@@ -104,10 +90,7 @@ public class SelectPlayerActivity extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
-                //Get cursor position of clicked on player
-                Log.d("position", String.valueOf(position));
-
-                //Open the viewPlayerProfileActivity screen and pass the column number of the player selected
+                                //Open the viewPlayerProfileActivity screen and pass the column number of the player selected
                 Intent intent = new Intent(SelectPlayerActivity.this, ViewPlayerProfileActivity.class);
                 //Pass column index of player clicked
                 intent.putExtra("ColumnIndex", position );

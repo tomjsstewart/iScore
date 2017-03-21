@@ -31,8 +31,6 @@ public class ViewPlayerProfileActivity extends AppCompatActivity {
          */
         int playerId = (getIntent().getIntExtra("ColumnIndex", -1)) + 1;
 
-        Log.d("Player column index", Integer.toString(playerId));
-
         //Select that player and get a PlayerData instance that contains all of their data.
         PlayerData player = db.getPlayerByID(playerId);
 

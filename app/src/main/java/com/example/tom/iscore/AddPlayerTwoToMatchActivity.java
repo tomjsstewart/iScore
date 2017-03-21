@@ -25,7 +25,6 @@ public class AddPlayerTwoToMatchActivity extends Activity {
 
         //Read in the column index of player one
         _playerOneId = getIntent().getIntExtra("PlayerOneId", -1);
-        Log.d("player one id ", String.valueOf(_playerOneId));
 
         displayListView();
 
@@ -46,17 +45,6 @@ public class AddPlayerTwoToMatchActivity extends Activity {
         //Get a cursor containing all of the players names, except the previously selected one
         Cursor cursor = db.getAllPlayersNamesExceptParmCursor(_playerOneId);
 
-        //Log.d("Show cursor", cursor.toString());
-
-        if (cursor == null)
-        {
-            Log.d("displayListView", "Cursor is null");
-        }
-
-        if (cursor.getCount() == 0)
-        {
-            Log.d("displayListView", "no players in database");
-        }
 
         //Passed into the SimpleCursorAdapter
         String[] player_names = new String[] {
