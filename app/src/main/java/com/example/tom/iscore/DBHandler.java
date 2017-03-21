@@ -372,6 +372,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public PlayerData setPlayerData(Cursor cursor)
     {
         Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
+        //Create a new instance of PlayerData
         PlayerData player = new PlayerData();
         //Set the relevant attributes within the PlayerData instance
         //Columns are zero-indexed and follow the order that the database was declared
