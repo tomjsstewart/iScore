@@ -27,6 +27,7 @@ public class HistoryActivity extends Activity {
     @Override
     public void onResume()
     {
+        //If the screen is reopened then the ListView is redisplayed/updated
         super.onResume();
         displayHistoryList();
     }
@@ -54,7 +55,6 @@ public class HistoryActivity extends Activity {
 
                 Intent intent = new Intent(HistoryActivity.this, ViewMatchActivity.class);
 
-                //Is this correct?
                 //pass in the Match ID
                 intent.putExtra("MatchID", (position/2) + 1);
 

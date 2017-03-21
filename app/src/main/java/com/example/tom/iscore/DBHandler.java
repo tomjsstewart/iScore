@@ -17,6 +17,7 @@ import java.util.List;
  */
 
 public class DBHandler extends SQLiteOpenHelper{
+    //Database infomation
     private static final String DATABASE_NAME = "iScoreDB.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -29,9 +30,6 @@ public class DBHandler extends SQLiteOpenHelper{
     public static final String KEY_PLAYER_AGE = "PlayerAge";
     public static final String KEY_PLAYER_GENDER = "PlayerGender";
     public static final String KEY_PLAYER_HAND = "PlayerHand";
-
-
-    //MatchDataTbl columns
 
 
     public DBHandler(Context context) {
@@ -101,7 +99,7 @@ public class DBHandler extends SQLiteOpenHelper{
                 + "PRIMARY KEY (MatchID, _id), "
                 + "FOREIGN KEY (_id) REFERENCES PlayerTbl(_id));"; //Defines foreign key and tells which table it came from.
 
-        //Create tables
+        //Create the tables
         db.execSQL(CREATE_PLAYER_TABLE);
         db.execSQL(CREATE_MATCH_DATA_TABLE);
         //db.close();
@@ -119,6 +117,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
     public void deleteForTest()
     {
+        //Open a database connection
         SQLiteDatabase db = this.getWritableDatabase();
         // Drop older tables if exists
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYERS);
@@ -134,9 +133,14 @@ public class DBHandler extends SQLiteOpenHelper{
         Function to save any matches that are completed.
         Data is read directly from  the PlayerData class instance for the player's data being saved.
          */
+
+        //Open a database connection
         SQLiteDatabase db = this.getWritableDatabase();
+
+        //Dictionary like structure to store the data to be saved to the database
         ContentValues data = new ContentValues();
 
+        //Add all of the data to the structure
         data.put("MatchID", matchID);
         data.put("_id", playerID);
         data.put("opp_Name", opp_Name);
@@ -186,13 +190,14 @@ public class DBHandler extends SQLiteOpenHelper{
         data.put("totalDriveVolleyWinners", DataClass.getTotalDriveVolleyWinners());
         data.put("totalHalfVolleyWinners", DataClass.getTotalHalfVolleyWinners());
 
+        //insert the data to the database
         long success = db.insert(TABLE_MATCH_DATA, null, data);
         //db.close();
         if (success != -1)
         {
             return true;
         }
-        else
+        else //-1 returned if an error occured
         {
             return false;
         }
@@ -203,15 +208,17 @@ public class DBHandler extends SQLiteOpenHelper{
                           int playerAge,
                           String playerGender,
                           String playerHand)
-
     {
         /*
         Function to save a players information in to the database, function assumes that all inputs
         it is given are valid, if an error occurs false is returned, if the data is correctly saved
         true is returned.
          */
+
+        //Open a database connection
         SQLiteDatabase db = this.getWritableDatabase();
 
+        //Dictionary like structure to store the data to be saved to the database
         ContentValues info = new ContentValues();
 
         //Data to add
@@ -226,7 +233,7 @@ public class DBHandler extends SQLiteOpenHelper{
         {
             return true;
         }
-        else
+        else //-1 is returned if an error occurs
         {
             return false;
         }
@@ -262,6 +269,8 @@ public class DBHandler extends SQLiteOpenHelper{
         the ID passed in as the parameter.
         This can then be queried.
          */
+
+        //Open a database connection
         SQLiteDatabase db = this.getReadableDatabase();
 
         //Return a cursor with all player id's except the one in the parameter
@@ -282,7 +291,7 @@ public class DBHandler extends SQLiteOpenHelper{
         Function to read all of the data for a specific player from the database.
         Data is returned as an instance of PlayerData
          */
-        //Open connection
+        //Open a database connection
         SQLiteDatabase db = this.getWritableDatabase();
         //Query the database to get the data for the player with the given ID
         Cursor cursor = db.rawQuery("SELECT * FROM PlayerTbl WHERE _id" + " = " + id , null);
@@ -316,7 +325,7 @@ public class DBHandler extends SQLiteOpenHelper{
         Function to get the next match id as it is repeated in the database, so cant be an auto-increment
          */
 
-        //Open connection to the database
+        //Open a database connection
         SQLiteDatabase db = this.getReadableDatabase();
 
         //Query the database for all matches
@@ -352,7 +361,7 @@ public class DBHandler extends SQLiteOpenHelper{
         to display all of the matches for the user to select one from.
          */
 
-        //Open connection to the database
+        //Open a database connection
         SQLiteDatabase db = this.getReadableDatabase();
 
         //Query the database for all matches
@@ -433,7 +442,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public List<PlayerData> getMatchData(int matchID) {
 
 
-        //Open connection to database
+        //Open a database connection
         SQLiteDatabase db = this.getReadableDatabase();
 
         //List to hold the player data instances for both players
@@ -455,19 +464,20 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
-public void viewAll() {
-    SQLiteDatabase db = this.getReadableDatabase();
+public void viewAll()
+    {
+        //Open a database connection
+        SQLiteDatabase db = this.getReadableDatabase();
 
 
-    Cursor cursor1 = db.rawQuery("SELECT * FROM " + TABLE_MATCH_DATA + ";", null);
-    Cursor cursor2 = db.rawQuery("SELECT * FROM " + TABLE_PLAYERS + ";", null);
+        Cursor cursor1 = db.rawQuery("SELECT * FROM " + TABLE_MATCH_DATA + ";", null);
+        Cursor cursor2 = db.rawQuery("SELECT * FROM " + TABLE_PLAYERS + ";", null);
 
-    cursor1.moveToFirst();
-    cursor2.moveToFirst();
+        cursor1.moveToFirst();
+        cursor2.moveToFirst();
 
-
-    Log.v("Cursor Players Table", DatabaseUtils.dumpCursorToString(cursor2));
-    Log.v("Cursor Match Data Tbl", DatabaseUtils.dumpCursorToString(cursor1));
+        Log.v("Cursor Players Table", DatabaseUtils.dumpCursorToString(cursor2));
+        Log.v("Cursor Match Data Tbl", DatabaseUtils.dumpCursorToString(cursor1));
     }
 
 }

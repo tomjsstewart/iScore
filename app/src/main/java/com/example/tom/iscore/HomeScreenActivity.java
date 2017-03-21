@@ -13,6 +13,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
+        //Find the buttons so they can be edited
         final Button startMatchBtn1 = (Button) findViewById(R.id.startMatchBtn);
         final Button playersListBtn = (Button) findViewById(R.id.profilesBtn);
         final Button historyBtn = (Button) findViewById(R.id.HistoryBtn);
@@ -60,7 +61,7 @@ public class HomeScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 /*
-                Open the AddPlayerOneToMatchActivity
+                Open the AddPlayerOneToMatchActivity if button clicked on
                  */
                 startActivity(new Intent(HomeScreenActivity.this, AddPlayerOneToMatchActivity.class));
             }
@@ -73,7 +74,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                 //db.addPlayer("Tom Stewart", 17, "Male", "R");
                 //db.addPlayer("Ben Stewart", 12, "Male", "R");
                 /*
-                Open the Players profile activity
+                Start the Players profile activity if button clicked on
                  */
                 startActivity(new Intent(HomeScreenActivity.this, SelectPlayerActivity.class));
             }
@@ -83,7 +84,7 @@ public class HomeScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 /*
-                Open HistoryActivity
+                Start HistoryActivity if button clicked on
                  */
                 startActivity(new Intent(HomeScreenActivity.this, HistoryActivity.class));
             }

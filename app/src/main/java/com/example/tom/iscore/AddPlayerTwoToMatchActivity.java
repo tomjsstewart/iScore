@@ -34,6 +34,7 @@ public class AddPlayerTwoToMatchActivity extends Activity {
     @Override
     public void onResume()
     {
+        //If the screen is reopened then the ListView is redisplayed/updated
         super.onResume();
         displayListView();
     }
@@ -42,6 +43,7 @@ public class AddPlayerTwoToMatchActivity extends Activity {
     {
         DBHandler db = new DBHandler(this);
 
+        //Get a cursor containing all of the players names, except the previously selected one
         Cursor cursor = db.getAllPlayersNamesExceptParmCursor(_playerOneId);
 
         //Log.d("Show cursor", cursor.toString());
@@ -56,7 +58,7 @@ public class AddPlayerTwoToMatchActivity extends Activity {
             Log.d("displayListView", "no players in database");
         }
 
-
+        //Passed into the SimpleCursorAdapter
         String[] player_names = new String[] {
                 DBHandler.KEY_PLAYER_NAME,
         };
@@ -65,6 +67,7 @@ public class AddPlayerTwoToMatchActivity extends Activity {
                 R.id.playername
         };
 
+        //This is used to dynamically edit the ListView
         dataAdapter = new SimpleCursorAdapter(
                 this, R.layout.display_names,
                 cursor,

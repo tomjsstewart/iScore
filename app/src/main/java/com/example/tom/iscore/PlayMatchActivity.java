@@ -42,6 +42,7 @@ public class PlayMatchActivity extends AppCompatActivity {
     //Initialise database
     DBHandler db = new DBHandler(this);
 
+    //Used to identify which player has been clicked on
     private int playerClicked = 0;
 
     public void checkWinningGameSetOrMatch()
@@ -510,6 +511,7 @@ public class PlayMatchActivity extends AppCompatActivity {
         player1Data = db.getPlayerByID(getIntent().getIntExtra("PlayerOneId", -1));
         player2Data = db.getPlayerByID(getIntent().getIntExtra("PlayerTwoId", -1));
 
+        //Find the button and TextViews so they can be edited
         player1NameTextView = (TextView) findViewById(R.id.player1NameTextView);
         player1PointsTextView = (TextView) findViewById(R.id.player1PointsTextView);
         player1GamesTextView = (TextView) findViewById(R.id.player1GamesTextView);
@@ -522,13 +524,18 @@ public class PlayMatchActivity extends AppCompatActivity {
 
         saveMatchBtn = (ImageButton) findViewById(R.id.saveMatchBtn);
 
+        //Set the players names
         player1NameTextView.setText(player1Data.getPlayerName());
         player2NameTextView.setText(player2Data.getPlayerName());
 
         player1NameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
+                Function to handle when player one is clicked on
+                 */
                 playerClicked = 1;
+
                 /*
                 Player 1 has scored a point.
                 Player 2's data is needed for deuce/ad calculations.
@@ -553,7 +560,11 @@ public class PlayMatchActivity extends AppCompatActivity {
         player2NameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
+                Function to handle when player two is clicked on
+                 */
                 playerClicked = 2;
+
                 /*
                 Player 2 has scored a point.
                 Player 1's data is needed for deuce/ad calculations.
@@ -561,7 +572,6 @@ public class PlayMatchActivity extends AppCompatActivity {
                 they are not reset if the player has won a game or set
                 Player 1 has lost a point.
                  */
-
                 player2Data.setOpponentsPointsThisGame(
                         player1Data.getPointsThisGame());
                 player2Data.setOpponentsGamesThisSet(

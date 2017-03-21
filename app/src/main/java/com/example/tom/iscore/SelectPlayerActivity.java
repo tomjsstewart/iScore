@@ -35,7 +35,7 @@ public class SelectPlayerActivity extends Activity {
             public void onClick(View v) {
                 startActivity(new Intent(SelectPlayerActivity.this, AddPlayerActivity.class));
 
-
+                //Update the ListView
                 displayListView();
             }
         });
@@ -43,10 +43,10 @@ public class SelectPlayerActivity extends Activity {
         displayListView();
     }
 
-
     @Override
     public void onResume()
     {
+        //If the screen is reopened then the ListView is redisplayed/updated
         super.onResume();
         displayListView();
     }

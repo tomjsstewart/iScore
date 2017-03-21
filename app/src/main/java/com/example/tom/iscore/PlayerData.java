@@ -11,12 +11,16 @@ public class PlayerData {
     public PlayerData(){
     }
 
+    //Holds the information about the players
     private int playerID;
     private String playerName;
     private int playerAge;
     private String playerGender;
     private String playerHand;
 
+    /*
+    Getters and setters for the attributes that hold the information about the players
+     */
     public void setPlayerID(int playerID) {
         this.playerID = playerID;
     }
@@ -58,6 +62,7 @@ public class PlayerData {
     }
 
     private String[] pointsValues = {"0", "15", "30", "40", "game", "deuce", "ad", "game"};
+
 
     //Scoring attributes
     private int pointsThisGame = 0;
@@ -177,12 +182,16 @@ public class PlayerData {
     public boolean hasWonMatch()
     {
         /*
-        Function to check if player has won match.
+        Function to check if player has won the match.
          */
         if (this.setsThisMatch == 3)
-        {return true;}
+        {
+            return true; //Won match
+        }
         else
-        {return false;}
+        {
+            return false; //Not won match
+        }
     }
 
     public boolean hasLostGame()
@@ -192,11 +201,11 @@ public class PlayerData {
         */
        if ( (this.opponentsPointsThisGame == 4) || (this.opponentsPointsThisGame == 7))
        {
-           return true;
+           return true;  //Lost game
        }
         else
        {
-           return false;
+           return false; //Not lost game
        }
     }
 
@@ -207,11 +216,11 @@ public class PlayerData {
         */
         if ( (this.opponentsGamesThisSet >= 6) && ((this.gamesThisSet+2) <= this.opponentsGamesThisSet) )
         {
-            return true;
+            return true; //Lost set
         }
         else
         {
-            return false;
+            return false; //Not lost set
         }
     }
 
@@ -223,9 +232,13 @@ public class PlayerData {
         the end of a set.
          */
         if ((this.pointsThisGame == 3) && (this.opponentsPointsThisGame == 3))
-        {return true;}
+        {
+            return true; //Deuce
+        }
         else
-        {return false;}
+        {
+            return false; //Not deuce
+        }
     }
 
 
@@ -340,9 +353,9 @@ public class PlayerData {
         }
 
         //If player has advantage
-        //Reset score to deuce
         if (this.pointsThisGame == 6)
         {
+            //Reset the score to deuce
             this.pointsThisGame = 5;
         }
 
@@ -418,30 +431,30 @@ public class PlayerData {
 
     public void loseSet()
     {
+        /*
+        Function to handle loosing a set
+         */
         this.totalSetsPlayed += 1;
         return;
     }
 
     public void resetPoints()
     {
+        /*
+        Function to reset the points of the player at the end of a game
+         */
         this.pointsThisGame = 0;
     }
 
     public void resetGames()
     {
+        /*
+        Function to reset games of the player at the end of a set
+         */
         this.gamesThisSet = 0;
     }
 
-    /*
-    Getters for the attributes that need to be accesed from outside the class.
-     */
-    public int getPointsThisGame()
-    {
-        return this.pointsThisGame;
-    }
-    public int getGamesThisSet() { return this.gamesThisSet; }
-    public int getSetsThisMatch() { return this.setsThisMatch; }
-    public int getServeType() { return this.serveType; }
+
 
 
     /*
@@ -546,6 +559,22 @@ public class PlayerData {
         this.isServing = !isServing;
     }
 
+
+    /*
+    Getters for the scoring attributes that need to be accessed from outside the class.
+     */
+    public int getPointsThisGame()
+    {
+        return this.pointsThisGame;
+    }
+    public int getGamesThisSet() { return this.gamesThisSet; }
+    public int getSetsThisMatch() { return this.setsThisMatch; }
+    public int getServeType() { return this.serveType; }
+
+    /*
+    Getters and setters for all of the statistical attributes
+     */
+
     public int getTotalReturnerServeWinners() {
         return totalReturnerServeWinners;
     }
@@ -638,7 +667,6 @@ public class PlayerData {
         return tieBreaksPlayed;
     }
 
-
     public int getBreakPointsSaved() {
         return breakPointsSaved;
     }
@@ -707,11 +735,11 @@ public class PlayerData {
         return totalPointsWon;
     }
 
-
     public void setSetsThisMatch(int sets)
     {
         this.setsThisMatch = sets;
     }
+
     public void setTotalSetsPlayed(int setsPlayed)
     {
         this.totalSetsPlayed = setsPlayed;
@@ -721,68 +749,48 @@ public class PlayerData {
         this.totalPointsWon = totalPointsWon;
     }
 
-    public void setTotalPointsPlayed(int totalPointsPlayed) {
-        this.totalPointsPlayed = totalPointsPlayed;
-    }
+    public void setTotalPointsPlayed(int totalPointsPlayed) { this.totalPointsPlayed = totalPointsPlayed;}
 
     public void setTotalGamesWon(int totalGamesWon) {
         this.totalGamesWon = totalGamesWon;
     }
 
-    public void setTotalGamesPlayed(int totalGamesPlayed) {
-        this.totalGamesPlayed = totalGamesPlayed;
+    public void setTotalGamesPlayed(int totalGamesPlayed) { this.totalGamesPlayed = totalGamesPlayed;}
+
+    public void setFirstServePointsPlayed(int firstServePointsPlayed) { this.firstServePointsPlayed = firstServePointsPlayed;}
+
+    public void setFirstServePointsWon(int firstServePointsWon) { this.firstServePointsWon = firstServePointsWon;}
+
+    public void setSecondServePointsPlayed(int secondServePointsPlayed) { this.secondServePointsPlayed = secondServePointsPlayed;}
+
+    public void setSecondServePointsWon(int secondServePointsWon) { this.secondServePointsWon = secondServePointsWon;
     }
 
-    public void setFirstServePointsPlayed(int firstServePointsPlayed) {
-        this.firstServePointsPlayed = firstServePointsPlayed;
+    public void setReceivingFirstServePointsPlayed(int receivingFirstServePointsPlayed) { this.receivingFirstServePointsPlayed = receivingFirstServePointsPlayed;
     }
 
-    public void setFirstServePointsWon(int firstServePointsWon) {
-        this.firstServePointsWon = firstServePointsWon;
+    public void setReceivingFirstServePointsWon(int receivingFirstServePointsWon) { this.receivingFirstServePointsWon = receivingFirstServePointsWon;
     }
 
-    public void setSecondServePointsPlayed(int secondServePointsPlayed) {
-        this.secondServePointsPlayed = secondServePointsPlayed;
+    public void setReceivingSecondServePointsPlayed(int receivingSecondServePointsPlayed) { this.receivingSecondServePointsPlayed = receivingSecondServePointsPlayed;
     }
 
-    public void setSecondServePointsWon(int secondServePointsWon) {
-        this.secondServePointsWon = secondServePointsWon;
+    public void setReceivingSecondServePointsWon(int receivingSecondServePointsWon) { this.receivingSecondServePointsWon = receivingSecondServePointsWon;
     }
 
-    public void setReceivingFirstServePointsPlayed(int receivingFirstServePointsPlayed) {
-        this.receivingFirstServePointsPlayed = receivingFirstServePointsPlayed;
+    public void setBreakPointChances(int breakPointChances) { this.breakPointChances = breakPointChances;
     }
 
-    public void setReceivingFirstServePointsWon(int receivingFirstServePointsWon) {
-        this.receivingFirstServePointsWon = receivingFirstServePointsWon;
+    public void setBreakPointsConverted(int breakPointsConverted) { this.breakPointsConverted = breakPointsConverted;
     }
 
-    public void setReceivingSecondServePointsPlayed(int receivingSecondServePointsPlayed) {
-        this.receivingSecondServePointsPlayed = receivingSecondServePointsPlayed;
+    public void setBreakPointsAgainst(int breakPointsAgainst) { this.breakPointsAgainst = breakPointsAgainst;
     }
 
-    public void setReceivingSecondServePointsWon(int receivingSecondServePointsWon) {
-        this.receivingSecondServePointsWon = receivingSecondServePointsWon;
+    public void setBreakPointsSaved(int breakPointsSaved) { this.breakPointsSaved = breakPointsSaved;
     }
 
-    public void setBreakPointChances(int breakPointChances) {
-        this.breakPointChances = breakPointChances;
-    }
-
-    public void setBreakPointsConverted(int breakPointsConverted) {
-        this.breakPointsConverted = breakPointsConverted;
-    }
-
-    public void setBreakPointsAgainst(int breakPointsAgainst) {
-        this.breakPointsAgainst = breakPointsAgainst;
-    }
-
-    public void setBreakPointsSaved(int breakPointsSaved) {
-        this.breakPointsSaved = breakPointsSaved;
-    }
-
-    public void setCurrentTieBreakpoints(int currentTieBreakpoints) {
-        this.currentTieBreakpoints = currentTieBreakpoints;
+    public void setCurrentTieBreakpoints(int currentTieBreakpoints) { this.currentTieBreakpoints = currentTieBreakpoints;
     }
 
     public void setTieBreaksPlayed(int tieBreaksPlayed) {
@@ -793,28 +801,23 @@ public class PlayerData {
         this.tieBreaksWon = tieBreaksWon;
     }
 
-    public void setTieBreakPointsPlayed(int tieBreakPointsPlayed) {
-        this.tieBreakPointsPlayed = tieBreakPointsPlayed;
+    public void setTieBreakPointsPlayed(int tieBreakPointsPlayed) { this.tieBreakPointsPlayed = tieBreakPointsPlayed;
     }
 
-    public void setTieBreakPointsWon(int tieBreakPointsWon) {
-        this.tieBreakPointsWon = tieBreakPointsWon;
+    public void setTieBreakPointsWon(int tieBreakPointsWon) { this.tieBreakPointsWon = tieBreakPointsWon;
     }
 
-    public void setDeucePointsPlayed(int deucePointsPlayed) {
-        this.deucePointsPlayed = deucePointsPlayed;
+    public void setDeucePointsPlayed(int deucePointsPlayed) { this.deucePointsPlayed = deucePointsPlayed;
     }
 
     public void setDeucePointsWon(int deucePointsWon) {
         this.deucePointsWon = deucePointsWon;
     }
 
-    public void setAdvantagePointsPlayed(int advantagePointsPlayed) {
-        this.advantagePointsPlayed = advantagePointsPlayed;
+    public void setAdvantagePointsPlayed(int advantagePointsPlayed) { this.advantagePointsPlayed = advantagePointsPlayed;
     }
 
-    public void setAdvantagePointsWon(int advantagePointsWon) {
-        this.advantagePointsWon = advantagePointsWon;
+    public void setAdvantagePointsWon(int advantagePointsWon) { this.advantagePointsWon = advantagePointsWon;
     }
 
     public void setTotalAces(int totalAces) {
@@ -825,61 +828,54 @@ public class PlayerData {
         this.totalFaults = totalFaults;
     }
 
-    public void setTotalDoubleFaults(int totalDoubleFaults) {
-        this.totalDoubleFaults = totalDoubleFaults;
+    public void setTotalDoubleFaults(int totalDoubleFaults) { this.totalDoubleFaults = totalDoubleFaults;
     }
 
-    public void setTotalUnforcedErrors(int totalUnforcedErrors) {
-        this.totalUnforcedErrors = totalUnforcedErrors;
+    public void setTotalUnforcedErrors(int totalUnforcedErrors) { this.totalUnforcedErrors = totalUnforcedErrors;
     }
 
-    public void setTotalForcedErrors(int totalForcedErrors) {
-        this.totalForcedErrors = totalForcedErrors;
+    public void setTotalForcedErrors(int totalForcedErrors) { this.totalForcedErrors = totalForcedErrors;
     }
 
     public void setTotalWinners(int totalWinners) {
         this.totalWinners = totalWinners;
     }
 
-    public void setTotalForehandWinners(int totalForehandWinners) {
-        this.totalForehandWinners = totalForehandWinners;
+    public void setTotalForehandWinners(int totalForehandWinners) { this.totalForehandWinners = totalForehandWinners;
     }
 
-    public void setTotalBackhandWinners(int totalBackhandWinners) {
-        this.totalBackhandWinners = totalBackhandWinners;
+    public void setTotalBackhandWinners(int totalBackhandWinners) { this.totalBackhandWinners = totalBackhandWinners;
     }
 
-    public void setTotalVolleyWinners(int totalVolleyWinners) {
-        this.totalVolleyWinners = totalVolleyWinners;
+    public void setTotalVolleyWinners(int totalVolleyWinners) { this.totalVolleyWinners = totalVolleyWinners;
     }
 
     public void setTotalSmashWinners(int totalSmashWinners) {
         this.totalSmashWinners = totalSmashWinners;
     }
 
-    public void setTotalDropShotWinners(int totalDropShotWinners) {
-        this.totalDropShotWinners = totalDropShotWinners;
+    public void setTotalDropShotWinners(int totalDropShotWinners) { this.totalDropShotWinners = totalDropShotWinners;
     }
 
-    public void setTotalDriveVolleyWinners(int totalDriveVolleyWinners) {
-        this.totalDriveVolleyWinners = totalDriveVolleyWinners;
+    public void setTotalDriveVolleyWinners(int totalDriveVolleyWinners) { this.totalDriveVolleyWinners = totalDriveVolleyWinners;
     }
 
-    public void setTotalHalfVolleyWinners(int totalHalfVolleyWinners) {
-        this.totalHalfVolleyWinners = totalHalfVolleyWinners;
+    public void setTotalHalfVolleyWinners(int totalHalfVolleyWinners) { this.totalHalfVolleyWinners = totalHalfVolleyWinners;
     }
 
     public void setTotalLobWinners(int totalLobWinners) {
         this.totalLobWinners = totalLobWinners;
     }
 
-    public void setTotalReturnerServeWinners(int totalReturnerServeWinners) {
-        this.totalReturnerServeWinners = totalReturnerServeWinners;
+    public void setTotalReturnerServeWinners(int totalReturnerServeWinners) { this.totalReturnerServeWinners = totalReturnerServeWinners;
     }
 
 
     public String dataToString()
     {
+        /*
+        Function to return the values of all the attributes of the class as a string
+         */
         //Define a string constant for a new line
         String newLine = System.getProperty("line.separator");
 

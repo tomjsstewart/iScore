@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 public class AddPlayerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
+    //Player attribute variables set to default values
     String _playerName = "";
     int _playerAge = 0;
     String _playerGender = "";
@@ -32,6 +33,7 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
         //Force to open portrait
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        //Find the button and TextViews so they can be edited
         Button saveButton = (Button) findViewById(R.id.SaveButton);
         final EditText playerNameText = (EditText) findViewById(R.id.inputPlayerName);
         final EditText playerAgeText = (EditText) findViewById(R.id.inputPlayerAge);
@@ -54,9 +56,9 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
 
                 _playerName = String.valueOf(playerNameText.getText());
 
-                //Read the age in as a integer
                 try
                 {
+                    //Read the age in as a integer
                     _playerAge = Integer.parseInt(playerAgeText.getText().toString());
                 } catch (NumberFormatException numForEx) {
                     /*
