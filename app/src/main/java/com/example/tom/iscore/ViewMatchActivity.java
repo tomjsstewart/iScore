@@ -24,12 +24,15 @@ public class ViewMatchActivity extends AppCompatActivity {
 
         DBHandler db = new DBHandler(this);
 
+        //Retreve the match ID that was passed in
         int matchID = (getIntent().getIntExtra("MatchID", -1));
 
         List<PlayerData> players = db.getMatchData(matchID);
+        //Create separate instances of PlayerData, one for each player
         PlayerData Player1 = players.get(0);
         PlayerData Player2 = players.get(1);
 
+        //Display data on the screen
         Display.setText("Player1\n" + Player1.dataToString() + "Player2\n" +Player2.dataToString());
 
 
