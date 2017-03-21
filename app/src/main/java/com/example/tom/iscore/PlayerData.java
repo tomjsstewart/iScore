@@ -880,22 +880,35 @@ public class PlayerData {
 
     public String dataToString()
     {
-        Field[] fields = this.getClass().getDeclaredFields();
+        //Define a string constant for a new line
         String newLine = System.getProperty("line.separator");
+
+        //get the names of all the attributes of the class
+        Field[] fields = this.getClass().getDeclaredFields();
+
+        //initialise the string to hold all the data
         String string = "";
 
+        //Iterate through all of the attributes of the class
         for ( Field field: fields )
         {
+            /*As long as the attributes is accessible, i.e. it isaccessiblee to developers and not
+            just used by the compiler.
+             */
             try
             {
+                //The attributes name is concatinated with its value and added to the string
                 string += field.getName() ;
                 string += ": " + field.get(this);
                 string += newLine;
             }
             catch (IllegalAccessException e) {
+                //This stops the app crashing if there is an attribute that cant be accessed and
+                //would not be viewable for a end user.
                 e.printStackTrace();
             }
         }
-    return string;
+        //Return the string containing all of the data
+        return string;
     }
 }
