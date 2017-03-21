@@ -24,7 +24,7 @@ public class ViewMatchActivity extends AppCompatActivity {
 
         DBHandler db = new DBHandler(this);
 
-        //Retreve the match ID that was passed in
+        //Retrieve the match ID that was passed in
         int matchID = (getIntent().getIntExtra("MatchID", -1));
 
         List<PlayerData> players = db.getMatchData(matchID);

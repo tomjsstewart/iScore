@@ -4,20 +4,15 @@ package com.example.tom.iscore;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Tom on 18/11/2016.
- */
 
 public class DBHandler extends SQLiteOpenHelper{
-    //Database infomation
+    //Database information
     private static final String DATABASE_NAME = "iScoreDB.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -193,14 +188,8 @@ public class DBHandler extends SQLiteOpenHelper{
         //insert the data to the database
         long success = db.insert(TABLE_MATCH_DATA, null, data);
         //db.close();
-        if (success != -1)
-        {
-            return true;
-        }
-        else //-1 returned if an error occured
-        {
-            return false;
-        }
+        //-1 returned if an error occurred
+        return success != -1;
     }
 
 
@@ -229,14 +218,8 @@ public class DBHandler extends SQLiteOpenHelper{
 
         long success = db.insert(TABLE_PLAYERS, null, info); //Insert row
         //db.close(); //Close database
-        if (success != -1)
-        {
-            return true;
-        }
-        else //-1 is returned if an error occurs
-        {
-            return false;
-        }
+        //-1 is returned if an error occurs
+        return success != -1;
     }
 
 
@@ -474,6 +457,9 @@ public void viewAll()
 
         cursor1.moveToFirst();
         cursor2.moveToFirst();
+
+        cursor1.close();
+        cursor2.close();
     }
 
 }

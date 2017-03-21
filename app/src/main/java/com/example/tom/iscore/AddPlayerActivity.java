@@ -125,7 +125,7 @@ public class AddPlayerActivity extends AppCompatActivity implements AdapterView.
                     msg = "Something went wrong, check player details.";
                     duration = Toast.LENGTH_LONG;
                     Toast toast = Toast.makeText(context, msg, duration);
-                    toast.show(); //dispay message
+                    toast.show(); //display message
                 }
 
             }

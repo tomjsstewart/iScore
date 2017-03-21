@@ -3,9 +3,6 @@ package com.example.tom.iscore;
 
 import java.lang.reflect.Field;
 
-/**
- * Created by Tom on 13/10/2016.
- */
 
 public class PlayerData {
     public PlayerData(){
@@ -160,10 +157,7 @@ public class PlayerData {
         4 points means score didn't reach deuce, 7 means they
         won from advantage.
          */
-        if ((this.pointsThisGame == 4) || (this.pointsThisGame == 7))
-        {return true;}
-        else
-        {return false;}
+        return (this.pointsThisGame == 4) || (this.pointsThisGame == 7);
     }
 
     public boolean hasWonSet()
@@ -173,10 +167,7 @@ public class PlayerData {
         To win a set they must have 6 or more games and be 2
         or more above their opponent.
          */
-        if ((this.gamesThisSet >=6) && ((this.opponentsGamesThisSet+2) <= this.gamesThisSet))
-        {return true;}
-        else
-        {return false;}
+        return (this.gamesThisSet >= 6) && ((this.opponentsGamesThisSet + 2) <= this.gamesThisSet);
     }
 
     public boolean hasWonMatch()
@@ -389,7 +380,7 @@ public class PlayerData {
         this.totalGamesPlayed += 1;
 
         //If won the set score a set
-        if (hasWonSet() == true)
+        if (hasWonSet())
         {
             scoreSet();
             return;
@@ -404,7 +395,7 @@ public class PlayerData {
 
         this.totalGamesPlayed += 1;
 
-        if (hasLostSet() == true)
+        if (hasLostSet())
         {
             loseSet();
             return;
@@ -421,7 +412,7 @@ public class PlayerData {
 
         this.totalSetsPlayed += 1;
 
-        if (hasWonMatch() == true)
+        if (hasWonMatch())
         {
             //Do something here to end the match
             //Buttons will need to be disabled and data later saved to database
@@ -893,7 +884,7 @@ public class PlayerData {
              */
             try
             {
-                //The attributes name is concatinated with its value and added to the string
+                //The attributes name is concatenated with its value and added to the string
                 string += field.getName() ;
                 string += ": " + field.get(this);
                 string += newLine;

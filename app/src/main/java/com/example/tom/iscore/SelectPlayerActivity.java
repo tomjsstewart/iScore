@@ -5,16 +5,12 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-/**
- * Created by Tom on 21/11/2016.
- */
 
 public class SelectPlayerActivity extends Activity {
 
